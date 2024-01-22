@@ -2,12 +2,12 @@ title: Jiaxuan Shen
 # tagline: Here is personal website of Hanlin Cai. Powered by Jekyll, based on the Minimal Mistakes theme.
 # description: Two roads diverged in woods, I took the one less traveled by.
 #Comment out url when working locally to resolve base urls correctly
-url: https://teacupxuan.com
+url: https://teacupxuan.github.io
 
 # Owner/author information
 owner:
   name: Jiaxuan Shen
-  avatar: hanlin.jpg
+  avatar: teacupxuan.jpg
   # bio: Two roads diverged in woods, I took the one less traveled by.
   email: 1592657679@qq.com
   cv: https://caihanlin.com/file/CV-HanlinCAI.pdf
