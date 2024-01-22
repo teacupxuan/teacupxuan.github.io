@@ -4,7 +4,7 @@ layout: page
 
 # About Me
 
-<img src="https://teacupxuan.com/teacupxuan.jpg" class="floatpic" width="360" height="480">
+<img src="https://teacupxuan.github.io/teacupxuan.jpg" class="floatpic" width="360" height="480">
 
 Here is **JiaXuan Shen (teacup, 沈嘉旋)**.
 
