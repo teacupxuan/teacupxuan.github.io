@@ -8,7 +8,7 @@ title: Blogs
 
 ### 2024
 
-- [个人网站建立](https://teacupxuan.github.io/blogs/个人网站建立.md)
+- [个人网站建立](https://teacupxuan.github.io/blogs/个人网站建立)
 
 <br>
 
