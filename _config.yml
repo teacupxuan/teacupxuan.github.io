@@ -32,19 +32,17 @@ google_verify: "SkiyuGpJOKT74vv5GmXLvYXXDkXy4v8VWPtbelYz3Hs"
 # For external links add external: true
 links:
   - title: About Me
-    url: /index/
+    url: /
   - title: Publications
     url: /publications/
   - title: Awards
     url: /awards/
-  - title: Teams
-    url: /teams/
   - title: Hobbies
     url: /hobbies/
-   - title: Notes
-     url: /notes/
   - title: Blogs
     url: /blogs/
+  - title: Teams
+    url: /teams/
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone: China/Beijing
