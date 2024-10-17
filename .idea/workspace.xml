@@ -2,7 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f920e74b-b2c1-48b2-9d1a-c9834de4255b" name="Changes" comment="改变了主页的个人简介">
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs.md" beforeDir="false" afterPath="$PROJECT_DIR$/blogs.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/18yrs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/19yrs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/20yrs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/21yrs.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/24fall.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/IoE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/aaai-24.assets/image-20240102233256486.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/aaai-24.assets/image-20240103220603425.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/aaai-24.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.assets/attacks.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.assets/cambridge-zh.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.assets/cc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.assets/flowchart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.assets/results.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.assets/rl.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.assets/st.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.assets/system.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.assets/table.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/cambridge.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/modeling.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/star.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/stop.assets/0502.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/stop.assets/202208.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/stop.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/summer-res.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/team2023.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/to-write-list/diversity.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/to-write-list/freshman.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/IMG_1138.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/github-logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/image-20230427100805390.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/image-20230427101010881.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/image-20230427101317954.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/image-20230427104320952.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/image-20230427104405873.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/image-20230427104831706.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/image-20230427110918118.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/image-20230427120849054.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/jekyll-logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.assets/wechat.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/web.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/wechat.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/yrs.assets/2022.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs/yrs.assets/2023.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/index.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +80,7 @@
       <updated>1667046162046</updated>
       <workItem from="1667046175596" duration="621000" />
       <workItem from="1729167817404" duration="1788000" />
-      <workItem from="1729176285961" duration="308000" />
+      <workItem from="1729176285961" duration="1701000" />
     </task>
     <task id="LOCAL-00001" summary="改变了主页的github链接">
       <created>1729168431238</created>
@@ -71,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729176427321</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="改变了主页的个人简介">
+      <created>1729176632532</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729176632532</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
