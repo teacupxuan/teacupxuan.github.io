@@ -6,17 +6,18 @@ layout: page
 
 <img src="https://teacupxuan.github.io/teacupxuan.jpg" class="floatpic" width="360" height="480">
 
-Here is **JiaXuan Shen (teacup, 沈嘉旋)**.
+这里是 **沈嘉旋 **.
 
-I am a sophomore student currently enrolled at Beijing University of Science and Technology.
+我是北京科技大学计算机科学与技术专业的大三学生，目前在华南理工大学交换。
 
-If you are interested in any aspect of me, I would love to chat and collaborate, please email me at - 1592657679@qq.com
+如果你有兴趣和我进行交流，非常欢迎你给我发邮件，这是我的邮箱1592657679@qq.com
 
 
 ## Academic Background
 
-- **Sep 2022 - June 2026:** University of Science and Technology Beijing
-- **Sep 2019 - June 2022:** Shenzhen Hongling Middle School
+- **Sep 2022 - June 2026:** 北京科技大学 本科
+- **Sep 2024 - January 2025:** 华南理工大学 交换
+- **Sep 2019 - June 2022:** 深圳市红岭中学 高中
 
 <br>
 
