@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f920e74b-b2c1-48b2-9d1a-c9834de4255b" name="Changes" comment="添加了第二篇博客“微信小程序”">
+    <list default="true" id="f920e74b-b2c1-48b2-9d1a-c9834de4255b" name="Changes" comment="修正了permalink">
+      <change afterPath="$PROJECT_DIR$/images/teacupxuan.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/个人网站建立.md" beforeDir="false" afterPath="$PROJECT_DIR$/blogs/个人网站建立.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogs/微信小程序.md" beforeDir="false" afterPath="$PROJECT_DIR$/blogs/微信小程序.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blogs.md" beforeDir="false" afterPath="$PROJECT_DIR$/blogs.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/index.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,11 +28,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/blogs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
     <property name="settings.editor.selected.configurable" value="advanced.settings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\15926\Documents\GitHub\teacupxuan.github.io\images" />
       <recent name="C:\Users\15926\Documents\GitHub\teacupxuan.github.io\blogs" />
     </key>
   </component>
@@ -46,7 +48,7 @@
       <workItem from="1667046175596" duration="621000" />
       <workItem from="1729167817404" duration="1788000" />
       <workItem from="1729176285961" duration="3485000" />
-      <workItem from="1729245379125" duration="1194000" />
+      <workItem from="1729245379125" duration="2252000" />
     </task>
     <task id="LOCAL-00001" summary="改变了主页的github链接">
       <created>1729168431238</created>
@@ -125,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729246340702</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="修正了permalink">
+      <created>1729246673112</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1729246673112</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +158,7 @@
     <MESSAGE value="改变了主页的个人简介" />
     <MESSAGE value="添加了第一篇博客“个人网站建立”" />
     <MESSAGE value="添加了第二篇博客“微信小程序”" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了第二篇博客“微信小程序”" />
+    <MESSAGE value="修正了permalink" />
+    <option name="LAST_COMMIT_MESSAGE" value="修正了permalink" />
   </component>
 </project>
