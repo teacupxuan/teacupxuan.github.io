@@ -9,6 +9,7 @@ title: Blogs
 ### 2024
 
 - [个人网站建立](https://teacupxuan.github.io/blogs/个人网站建立)
+- [微信小程序](https://teacupxuan.github.io/blogs/微信小程序)
 
 <br>
 
