@@ -1,0 +1,6 @@
+[submodule "hexo-theme-redefine"]
+	path = hexo-theme-redefine
+	url = https://github.com/EvanNotFound/hexo-theme-redefine
+[submodule "themes/hexo-theme-redefine"]
+	path = themes/hexo-theme-redefine
+	url = https://github.com/EvanNotFound/hexo-theme-redefine
