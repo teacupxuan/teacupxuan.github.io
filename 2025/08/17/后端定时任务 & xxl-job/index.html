@@ -123,7 +123,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://teacupxuan.github.io/404.html"/>
+    <link rel="canonical" href="https://teacupxuan.github.io/2025/08/17/后端定时任务 & xxl-job/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -132,15 +132,17 @@
     
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Page Not Found">
-<meta property="og:url" content="https://teacupxuan.github.io/404.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后端定时任务 &amp; xxl-job">
+<meta property="og:url" content="https://teacupxuan.github.io/2025/08/17/%E5%90%8E%E7%AB%AF%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%20&%20xxl-job/index.html">
 <meta property="og:site_name" content="teacupxuan的博客">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-08-17T09:16:31.000Z">
+<meta property="article:modified_time" content="2025-08-17T09:17:06.058Z">
 <meta property="article:author" content="teacupxuan">
-<meta property="article:tag" content="技术,编程,博客,生活">
+<meta property="article:tag" content="后端定时任务">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
     
@@ -154,7 +156,7 @@
     
     <title>
         
-            Page Not Found | teacupxuan的博客
+            后端定时任务 &amp; xxl-job | teacupxuan的博客
         
     </title>
 
@@ -459,15 +461,343 @@
 			
 
 			<div class="main-content">
-				<div class="nf-container">
-    <div class="nf-text">
-        <h1>404<br>Page Not Found</h1>
-    </div>
-    <div class="nf-button">
-        <a href="/" class="button large center"><i class="fa-regular fa-house"></i> 回到首页</a>
-    </div>
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">后端定时任务 &amp; xxl-job</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/%E8%8C%B6%E6%9D%AF.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">teacupxuan</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-08-17 17:16:31</span>
+        <span class="mobile">2025-08-17 17:16:31</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-08-17 17:17:06</span>
+            <span class="mobile">2025-08-17 17:17:06</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%90%8E%E7%AB%AF%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">后端定时任务</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
 </div>
 
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>最近在实习过程中，需要写定时任务。我之前在网上学习“苍穹外卖”的时候，写过定时任务。<br>具体功能主要包括：</p>
+<ul>
+<li>每分钟检查支付超时的订单，并将其状态修改为“已取消”。</li>
+<li>每天凌晨检查“派送中”的订单，并将其状态修改为“已完成”。</li>
+</ul>
+<p>当时只是跟着视频敲代码，并没有更多自己的理解和思考。比如项目到底是如何触发定时任务的？定时任务为什么会自动开始运行？以及没有到达对应的时间，要如何对这个定时任务进行测试？如何对多个定时项目的多个定时任务进行统一管理？企业中都如何写定时任务？</p>
+<p>正好现在遇到了这个问题，就对这个知识点做一个总结吧！</p>
+<h3 id="定时任务是什么？"><a href="#定时任务是什么？" class="headerlink" title="定时任务是什么？"></a>定时任务是什么？</h3><h5 id="生活类比："><a href="#生活类比：" class="headerlink" title="生活类比："></a>生活类比：</h5><p>想象家里有一个智能闹钟（定时任务），可以让它：</p>
+<ul>
+<li>每天早上7点叫你起床</li>
+<li>每隔30分钟提醒你喝水</li>
+</ul>
+<p>你只需要提前<strong>设定好时间和任务内容</strong>，它就会自动执行，不用你手动去按按钮。</p>
+<h5 id="在后端系统中："><a href="#在后端系统中：" class="headerlink" title="在后端系统中："></a>在后端系统中：</h5><ul>
+<li>这个“闹钟”就是<strong>定时任务调度器</strong>（Scheduler）</li>
+<li>你在代码里告诉它：<strong>什么时候执行</strong>（时间表达式，比如CRON表达式）、<strong>要执行什么逻辑</strong></li>
+<li>它就会到点执行，比如：<ul>
+<li>每天0点清理过期数据</li>
+<li>每小时计算一次统计报表</li>
+<li>每5分钟同步一次缓存</li>
+</ul>
+</li>
+</ul>
+<h3 id="为什么它会自动运行？"><a href="#为什么它会自动运行？" class="headerlink" title="为什么它会自动运行？"></a>为什么它会自动运行？</h3><p>这个“自动”不是凭空发生的，而是<strong>程序里有个“永远在跑的循环”</strong> 在帮你看表（任务列表）。</p>
+<ul>
+<li>当你的后端程序启动时，如果你集成了定时任务框架（Quartz、xxl-job、Spring Scheduler等），它会：<ol>
+<li>启动一个<strong>常驻线程</strong> （就像24小时值班的秘书）</li>
+<li>读取所有任务的“执行时间表”</li>
+<li>不停地检查：有没有到时间要执行的任务？</li>
+<li>一到时间，就帮你调用你写好的那段逻辑函数</li>
+</ol>
+</li>
+</ul>
+<p>所以：</p>
+<ul>
+<li>你感觉它是“自动运行”</li>
+<li>实际上是因为<strong>程序启动时已经注册了一个定时器线程</strong>，它一直在后台看表、按表执行</li>
+</ul>
+<h3 id="xxl-job到底是干嘛的？"><a href="#xxl-job到底是干嘛的？" class="headerlink" title="xxl-job到底是干嘛的？"></a>xxl-job到底是干嘛的？</h3><p>可以把它看作是 <strong>“企业级的任务调度中心”</strong>，作用就像是：</p>
+<ul>
+<li>你公司有很多部门（很多服务&#x2F;机器）</li>
+<li>每个部门都有各种任务（脚本、计算、同步等）</li>
+<li>如果每个部门都自己定闹钟，容易乱、不好统一管理</li>
+<li>所以公司有个<strong>统一调度室</strong>（xxl-job-admin）<ul>
+<li>统一存储所有任务的执行时间、状态</li>
+<li>到点了就通知具体的员工（xxl-job-executor）去干活</li>
+</ul>
+</li>
+</ul>
+<h5 id="xxl-job运行原理（简化版）："><a href="#xxl-job运行原理（简化版）：" class="headerlink" title="xxl-job运行原理（简化版）："></a>xxl-job运行原理（简化版）：</h5><ol>
+<li><strong>xxl-job-admin</strong>（调度中心）<ul>
+<li>存在一张“任务表”，里面有任务的 CRON 表达式、状态等</li>
+<li>有个定时扫描器（调度线程），负责按时间触发任务</li>
+<li>到点了，就发 HTTP 请求给对应的执行器</li>
+</ul>
+</li>
+<li><strong>xxl-job-executor</strong>（执行器）<ul>
+<li>跑在你服务的 JVM 里</li>
+<li>收到调度中心的 HTTP 请求，就执行你写好的业务逻辑（JobHandler）</li>
+<li>执行结果再回传给调度中心</li>
+</ul>
+</li>
+</ol>
+<p>所以它自动运行的原因是：</p>
+<ul>
+<li>你的执行器进程一直在运行（跟服务一起启动）</li>
+<li>调度中心会按设定的时间发任务请求</li>
+<li>执行器接到后自动调用你的任务代码</li>
+</ul>
+<h3 id="定时任务如何进行测试？"><a href="#定时任务如何进行测试？" class="headerlink" title="定时任务如何进行测试？"></a>定时任务如何进行测试？</h3><p>企业里的测试人员进行测试时是无法修改代码的，所以无法直接修改Cron表达式来测试。有以下几种推荐的方法：</p>
+<ol>
+<li><p>把定时任务逻辑拆成“触发器”和“业务逻辑”<br> 做法：</p>
+<ul>
+<li>把发送消息的核心逻辑单独封装成一个方法，例如 <code>sendMessagesToAllUsers()</code>。</li>
+<li>定时任务的方法里只是调用这个方法。</li>
+<li>这样测试时，就可以直接单元测试 <code>sendMessagesToAllUsers()</code>，而不依赖时间触发。<br> 好处：逻辑和调度解耦，测试不需要等时间。</li>
+</ul>
+</li>
+<li><p>模拟时间（Mock 时间）</p>
+<ul>
+<li>适合：需要验证“到 15 日 7 点才触发”这种时间条件。</li>
+<li>做法：<ul>
+<li>使用<strong>时间虚拟化库</strong>（例如 Java 的 <code>Clock</code> 类、Joda-Time 的 <code>DateTimeUtils</code> 或者测试框架里的 <code>Mockito</code> 对 <code>LocalDateTime.now()</code> 进行 mock）。</li>
+<li>在测试时，把“当前时间”模拟成 15 日 7:00，让你的代码以为它到了指定时间。</li>
+</ul>
+</li>
+<li>好处：不改 cron，也能测试时间条件。</li>
+<li>缺点：较为复杂。</li>
+</ul>
+</li>
+<li><p>用xxl-job,直接在 XXL-Job 控制台手动触发<br> 操作步骤：</p>
+<ol>
+<li>进入XXL-Job Admin控制台。</li>
+<li>找到你写的这个任务（按 JobHandler 名称搜索）。</li>
+<li>点击 <strong>“执行一次”</strong>（立即执行按钮）。</li>
+<li>观察执行日志（可以看日志输出，也能验证消息是否正常发送）。<br> 好处：</li>
+</ol>
+<ul>
+<li>不改代码、不改 cron。</li>
+<li>可以随时验证生产或测试环境的任务。</li>
+<li>能配合不同参数测试，比如发送给指定测试用户，而不是全量用户。<br> 注意：</li>
+<li>如果消息发送会影响真实用户，测试前最好在任务参数里加标志位（比如 <code>isTest=true</code>）让代码只发给测试账号。</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>普通定时任务</strong>：你自己在服务里写一个闹钟，服务启动后它就一直按时间跑。</li>
+<li><strong>xxl-job</strong>：多台机器、多个服务的“中央闹钟管理器”，它负责全局定时、统一触发、监控执行结果，让你不用在每个服务里手动写定时器。</li>
+<li>如何测试：逻辑和调度解耦拆分、模拟时间、使用xxl-job Admin直接点击来触发。</li>
+</ul>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> 后端定时任务 &amp; xxl-job</li>
+        <li><strong>作者:</strong> teacupxuan</li>
+        <li><strong>创建于
+                :</strong> 2025-08-17 17:16:31</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2025-08-17 17:17:06
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://teacupxuan.github.io/2025/08/17/后端定时任务 &amp; xxl-job/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E5%90%8E%E7%AB%AF%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">#后端定时任务</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/08/13/%E5%85%B3%E4%BA%8E%E9%AB%98%E6%80%A7%E8%83%BD%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%80%9D%E8%80%83/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">关于高性能系统的思考</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'teacupxuan/teacupxuan.github.io',
+                'data-repo-id': 'R_kgDONInFtQ',
+                'data-category': 'General',
+                'data-category-id': 'DIC_kwDONInFtc4CtuXr',
+                'data-mapping': 'pathname',
+                'data-strict': '0',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'top',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
+        }
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">后端定时任务 &amp; xxl-job</div>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">定时任务是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%83%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C%EF%BC%9F"><span class="nav-text">为什么它会自动运行？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xxl-job%E5%88%B0%E5%BA%95%E6%98%AF%E5%B9%B2%E5%98%9B%E7%9A%84%EF%BC%9F"><span class="nav-text">xxl-job到底是干嘛的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95%EF%BC%9F"><span class="nav-text">定时任务如何进行测试？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
 			</div>
 
 			
@@ -545,6 +875,26 @@
 		</div>
 	</div>
 
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
 	
 
 	<div class="right-side-tools-container">
@@ -627,6 +977,7 @@
         containers: ["#swup"],
     });
 </script>
+
 
 
 
