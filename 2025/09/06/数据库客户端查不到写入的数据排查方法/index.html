@@ -123,7 +123,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://teacupxuan.github.io/2025/08/31/web1 → web2 → web3/"/>
+    <link rel="canonical" href="https://teacupxuan.github.io/2025/09/06/数据库客户端查不到写入的数据排查方法/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -133,16 +133,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Web1 → Web2 → Web3">
-<meta property="og:url" content="https://teacupxuan.github.io/2025/08/31/Web1%20%E2%86%92%20Web2%20%E2%86%92%20Web3/index.html">
+<meta property="og:title" content="数据库客户端查不到写入的数据排查方法">
+<meta property="og:url" content="https://teacupxuan.github.io/2025/09/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9F%A5%E4%B8%8D%E5%88%B0%E5%86%99%E5%85%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8E%92%E6%9F%A5%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="teacupxuan的博客">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-08-31T06:43:31.000Z">
-<meta property="article:modified_time" content="2025-08-31T06:43:42.459Z">
+<meta property="article:published_time" content="2025-09-06T14:32:31.000Z">
+<meta property="article:modified_time" content="2025-09-06T14:32:47.680Z">
 <meta property="article:author" content="teacupxuan">
-<meta property="article:tag" content="互联网">
+<meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
     
@@ -156,7 +156,7 @@
     
     <title>
         
-            Web1 → Web2 → Web3 | teacupxuan的博客
+            数据库客户端查不到写入的数据排查方法 | teacupxuan的博客
         
     </title>
 
@@ -543,7 +543,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Web1 → Web2 → Web3</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">数据库客户端查不到写入的数据排查方法</h1>
 			</div>
 			
 		</div>
@@ -564,15 +564,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-08-31 14:43:31</span>
-        <span class="mobile">2025-08-31 14:43:31</span>
+        <span class="desktop">2025-09-06 22:32:31</span>
+        <span class="mobile">2025-09-06 22:32:31</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-08-31 14:43:42</span>
-            <span class="mobile">2025-08-31 14:43:42</span>
+            <span class="desktop">2025-09-06 22:32:47</span>
+            <span class="mobile">2025-09-06 22:32:47</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -600,7 +600,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
                     </li>
                 
             </ul>
@@ -626,99 +626,57 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>最近在公司和同事聊天，发现他前公司是做Web3的，后面老板被抓了，工资都发不出来。这激发了我的兴趣，到底什么是Web3？这个词我一直有听说，但我只有模模糊糊的概念，并不清楚到底是什么。于是，今天来系统学习一下到底是什么Web3？</p>
-<p>既然有Web3，那么就有Web1和Web2。接下来会依次介绍Web1、Web2和Web3。</p>
-<h4 id="🌐-Web1（大约-1990s-2005）"><a href="#🌐-Web1（大约-1990s-2005）" class="headerlink" title="🌐 Web1（大约 1990s - 2005）"></a>🌐 Web1（大约 1990s - 2005）</h4><p>特点：只读</p>
+			<p>最近我在上班时遇到了两个个问题：</p>
 <ul>
-<li>这是互联网的早期阶段，网页基本是<strong>静态网页</strong></li>
-<li>网站内容主要由企业或个人发布，用户只能浏览，几乎没有互动。</li>
-<li>典型代表：雅虎目录、早期的新浪、网易、个人主页。</li>
-<li>用户是“读者”，没有多少“参与感”。</li>
+<li>我自测时调用接口给PostgreSQL写入数据，但是我在DBeaver刷新了很久都刷不出来我新写入的数据。但过了一会再次刷新时，就可以看见刚刚插入的数据，创建时间也是我调用接口的时间。</li>
+<li>同时我还写入了Redis中，但是在Tiny Redis就刷新不出来，在Another Redis Desktop Manager就可以正确刷新出来。<br>这两个问题都可以归类为数据库客户端查不到刚刚写入的数据，我对此进行了搜寻资料和询问AI，得到了以下方法来排查和解决该类问题。</li>
 </ul>
-<p>举例：像一本在线的报纸，你只能读，不能评论、不能互动。</p>
-<h4 id="🌐-Web2（大约-2005-至今）"><a href="#🌐-Web2（大约-2005-至今）" class="headerlink" title="🌐 Web2（大约 2005 - 至今）"></a>🌐 Web2（大约 2005 - 至今）</h4><p>特点：可读写</p>
-<ul>
-<li>用户不仅能浏览，还能<strong>参与生产内容</strong>（UGC——User Generated Content）。</li>
-<li>平台经济崛起：社交媒体、短视频、电商平台。</li>
-<li>互动性极强，用户既是消费者也是生产者，但是数据和收益主要被平台掌控。</li>
-<li>典型代表：Facebook、YouTube、微博、知乎、抖音。</li>
+<h5 id="为什么DBeaver-要刷新很久才能看到？"><a href="#为什么DBeaver-要刷新很久才能看到？" class="headerlink" title="为什么DBeaver 要刷新很久才能看到？"></a>为什么DBeaver 要刷新很久才能看到？</h5><p>有以下几个常见原因：</p>
+<h6 id="1-DBeaver-的查询结果是缓存的"><a href="#1-DBeaver-的查询结果是缓存的" class="headerlink" title="1. DBeaver 的查询结果是缓存的"></a>1. DBeaver 的查询结果是缓存的</h6><ul>
+<li>DBeaver不会实时展示数据库的变化，它只会显示上一次执行SQL的结果。</li>
+<li>你必须手动点击“刷新”或重新执行<code>SELECT</code> 才能看到最新数据。</li>
+<li>所以，你看到的“延迟”，其实是因为你没重新查，而不是数据库没写进去。</li>
 </ul>
-<p>举例：所有人都能在微博发动态、在抖音发视频，但平台拥有数据的所有权和绝大部分收益。</p>
-<h4 id="Web3（正在发展中，未来趋势）"><a href="#Web3（正在发展中，未来趋势）" class="headerlink" title="Web3（正在发展中，未来趋势）"></a>Web3（正在发展中，未来趋势）</h4><p>特点：可读写 + 可拥有</p>
-<ul>
-<li>基于<strong>区块链、去中心化</strong>的理念。</li>
-<li>数据、内容和资产的所有权回归用户（数字身份、NFT（非同质化代币）、代币）。</li>
-<li>用户不只是内容的生产者，还是资产拥护者，能从中获益。</li>
-<li>强调<strong>去中心化应用</strong>，由智能合约驱动，而不是传统公司平台。</li>
-<li>典型代表：以太访、NFT、去中心化社交。</li>
-</ul>
-<p>举例：你在Web3的平台上写一篇文章，可以直接铸造成NFT，别人打赏、购买、收益直接归你，而不是被平台抽走大部分。</p>
-<h4 id="Web3如何实现数据所有权回归用户？"><a href="#Web3如何实现数据所有权回归用户？" class="headerlink" title="Web3如何实现数据所有权回归用户？"></a>Web3如何实现数据所有权回归用户？</h4><p>比喻：租房 vs 买房</p>
-<ul>
-<li>在Web2，你就像是住在<strong>租来的房子</strong> （平台：微博、抖音、YouTube）。<ul>
-<li>你可以装修（发帖子、上传视频），但房子产权不是你的。</li>
-<li>房东（平台）可以随时把你赶走（封号、删帖）。</li>
-<li>你做出的装修（数据、内容）最后都归房东受益（平台拿走流量和收益）。</li>
+<h6 id="2-事务隔离级别的影响"><a href="#2-事务隔离级别的影响" class="headerlink" title="2. 事务隔离级别的影响"></a>2. 事务隔离级别的影响</h6><ul>
+<li>如果你在 DBeaver 里开了一个事务（很多时候默认就是自动开事务），查询结果可能不会立即反映最新写入的数据，除非：<ul>
+<li>事务提交（<code>commit</code>）</li>
+<li>或者你开了一个新的会话去查</li>
 </ul>
 </li>
-<li>在Web3，你就像是拥有了 <strong>自己的房子（区块链上的钱包地址）</strong>。<ul>
-<li>房产证（私钥）在你手里，别人拿不走。</li>
-<li>你写的文章、发的照片（数据、NFT）都记录在区块链上，属于你。</li>
-<li>如果有人想用或买你的东西，收益会直接进你的账户，而不是先被平台抽成。</li>
+<li>特别是PostgreSQL、MySQL InnoDB 默认的 <strong>可重复读 &#x2F; 读已提交</strong> 隔离级别，会导致当前会话看不到别的事务刚刚提交的数据。</li>
 </ul>
-</li>
+<p>→检查一下 DBeaver 状态栏是不是显示 <code>Auto-commit</code>？如果没开，记得 <code>commit</code>。</p>
+<h6 id="3-查询条件-排序问题"><a href="#3-查询条件-排序问题" class="headerlink" title="3. 查询条件 &#x2F; 排序问题"></a>3. 查询条件 &#x2F; 排序问题</h6><ul>
+<li>有时候你在 DBeaver 的 SQL 里用了缓存的 SQL（比如 <code>SELECT * FROM xxx LIMIT 100</code>），它可能没把最新插入的行查出来，导致你以为数据没写进去。</li>
+<li>建议你加上 <code>ORDER BY create_time DESC</code>，就能保证最新的数据在最上面。</li>
 </ul>
-<p>核心原理</p>
-<ol>
-<li>账户（钱包地址）归你自己控制<ul>
-<li>Web2：你的账号是“借”平台的，微博、微信一关，你就失去了账号。</li>
-<li>Web3：你的账号是一个区块链钱包（例如 0x1234…），它属于你，只要你有私钥，谁也关不了。</li>
-</ul>
-</li>
-<li>数据存在“大家的账本”里，而不是平台的数据库<ul>
-<li>Web2：你的数据存在腾讯、字节的数据库里，他们有最终控制权。</li>
-<li>Web3：数据写在区块链（像一本公开账本），所有人都能验证，没人能偷偷改掉或删掉。</li>
-</ul>
-</li>
-<li>收益直接到你钱包<ul>
-<li>Web2：你发视频，广告费先到平台，平台分给你一点点。</li>
-<li>Web3：别人打赏、购买 NFT，钱直接进你的钱包，不经过中间人。</li>
-</ul>
-</li>
+<p>总结：你的数据其实已经实时写进数据库了，只是 DBeaver 默认不会“实时刷新”，再加上事务隔离&#x2F;查询条件的影响，让你觉得要等很久才能看到。</p>
+<h5 id="DBeaver刷新看不到数据的排查方法"><a href="#DBeaver刷新看不到数据的排查方法" class="headerlink" title="DBeaver刷新看不到数据的排查方法"></a>DBeaver刷新看不到数据的排查方法</h5><ol>
+<li>先确认是不是<strong>缓存</strong>（重新跑SQL）。</li>
+<li>再看<strong>事务模式</strong>（Auto-commit vs 手动）。</li>
+<li>看<strong>事务隔离级别</strong>。</li>
+<li>检查<strong>SQL查询条件</strong>。</li>
 </ol>
-<p>再举一个生活例子</p>
-<ul>
-<li><strong>Web2 像淘宝</strong>：你开店，店铺规则、结算、顾客关系都在淘宝手里，淘宝随时能封你店。</li>
-<li><strong>Web3 像自己摆摊</strong>：摊位（钱包地址）是你的，顾客直接扫码给你钱（加密货币转账），不用担心被平台抽走手续费或封号。</li>
+<h5 id="Tiny-RDB查不到最新数据，但ARDM能查到最新数据的原因"><a href="#Tiny-RDB查不到最新数据，但ARDM能查到最新数据的原因" class="headerlink" title="Tiny RDB查不到最新数据，但ARDM能查到最新数据的原因?"></a>Tiny RDB查不到最新数据，但ARDM能查到最新数据的原因?</h5><h6 id="1-连接质量问题"><a href="#1-连接质量问题" class="headerlink" title="1. 连接质量问题"></a>1. 连接质量问题</h6><ul>
+<li>Tiny RDB 可能没有做连接池优化，网络稍微不稳定时，<code>SCAN</code> 的响应就容易卡住或丢失。</li>
+<li>如果 Redis 部署在云端（比如阿里云&#x2F;腾讯云），Tiny RDB 的超时配置比 ARDM 更敏感，就会导致「刷新半天没出来」。</li>
 </ul>
-<h4 id="总结对比"><a href="#总结对比" class="headerlink" title="总结对比"></a>总结对比</h4><table>
-<thead>
-<tr>
-<th>阶段</th>
-<th>特点</th>
-<th>用户角色</th>
-<th>数据归属</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Web1</strong></td>
-<td>静态网页，只读</td>
-<td>读者</td>
-<td>网站拥有</td>
-</tr>
-<tr>
-<td><strong>Web2</strong></td>
-<td>交互式平台，可写</td>
-<td>内容生产者</td>
-<td>平台拥有</td>
-</tr>
-<tr>
-<td><strong>Web3</strong></td>
-<td>去中心化，可拥有</td>
-<td>内容生产者 + 资产拥有者</td>
-<td>用户自己</td>
-</tr>
-</tbody></table>
+<h6 id="2-全量扫描性能差"><a href="#2-全量扫描性能差" class="headerlink" title="2. 全量扫描性能差"></a>2. 全量扫描性能差</h6><ul>
+<li>Redis 没有 <code>SELECT *</code> 这种操作，客户端需要用 <code>SCAN</code> 扫描所有 key。</li>
+<li>ARDM 的做法是：<strong>异步分批加载</strong>，你一边能看到旧数据，一边后台继续扫。</li>
+<li>Tiny RDB 的做法是：<strong>阻塞式扫描</strong>，要等扫到一批才能展示 → 如果 db0 里 key 数量很多，就会显得「刷不出来」。</li>
+</ul>
+<h6 id="3-UI-渲染优化不足"><a href="#3-UI-渲染优化不足" class="headerlink" title="3. UI &#x2F; 渲染优化不足"></a>3. UI &#x2F; 渲染优化不足</h6><ul>
+<li>ARDM 有缓存 + 虚拟列表渲染，即使 Redis 有 10w key，它也能瞬间展示一部分。</li>
+<li>Tiny RDB 没有优化，key 一多就卡顿，表现为「看不到新数据」。</li>
+</ul>
+<h6 id="4-解决办法"><a href="#4-解决办法" class="headerlink" title="4. 解决办法"></a>4. 解决办法</h6><ol>
+<li>在 Tiny RDB 里不要用「刷新所有 key」，直接 <strong>搜索具体的 key</strong>（这样只发一个 <code>GET</code>，不会卡）。</li>
+<li>如果一定要浏览，尝试调小「每批次加载的 key 数量」（有些客户端能设置 <code>scan count</code>）。</li>
+<li>遇到不稳定，可以先用 <code>redis-cli</code> 验证数据是否存在，避免怀疑是 Redis 本身的问题。</li>
+<li>如果是日常开发调试，建议还是用 <strong>Another Redis Desktop Manager</strong> 或者 <strong>RedisInsight</strong>，它们对大 key 空间更友好。</li>
+</ol>
+<p>这次问题也让我明白了，那么多数据库可视化客户端为什么有的很出名，甚至要收费用比如 Navicat，为什么有的无人问津。这是因为他们在处理数据库连接和可视化展示，刷新等方式有着很大的不同，同时在性能上也有很大差异！</p>
 
 		</div>
 
@@ -726,18 +684,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> Web1 → Web2 → Web3</li>
+        <li><strong>标题:</strong> 数据库客户端查不到写入的数据排查方法</li>
         <li><strong>作者:</strong> teacupxuan</li>
         <li><strong>创建于
-                :</strong> 2025-08-31 14:43:31</li>
+                :</strong> 2025-09-06 22:32:31</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-08-31 14:43:42
+                    :</strong> 2025-09-06 22:32:47
             </li>
         
         <li>
-            <strong>链接:</strong> https://teacupxuan.github.io/2025/08/31/Web1 → Web2 → Web3/
+            <strong>链接:</strong> https://teacupxuan.github.io/2025/09/06/数据库客户端查不到写入的数据排查方法/
         </li>
         <li>
             <strong>
@@ -759,7 +717,7 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/">#互联网</a>&nbsp;
+				<a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -770,23 +728,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/09/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9F%A5%E4%B8%8D%E5%88%B0%E5%86%99%E5%85%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8E%92%E6%9F%A5%E6%96%B9%E6%B3%95/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">数据库客户端查不到写入的数据排查方法</span>
-						<span class="post-nav-item">上一篇</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/08/18/%E5%86%92%E7%83%9F%E6%B5%8B%E8%AF%95/">
+				<a class="next" rel="next" href="/2025/08/31/Web1%20%E2%86%92%20Web2%20%E2%86%92%20Web3/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">冒烟测试</span>
+						<span class="post-nav-title-item truncate max-w-48">Web1 → Web2 → Web3</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -861,7 +807,7 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">Web1 → Web2 → Web3</div>
+		<div class="page-title">数据库客户端查不到写入的数据排查方法</div>
 		
 
 	</div>
