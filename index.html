@@ -567,7 +567,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">19</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -575,7 +575,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -644,7 +644,7 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">19</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -652,7 +652,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -667,6 +667,81 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/09/15/%E3%80%90%E5%85%AB%E8%82%A1%E6%96%87%E3%80%91Redis%E5%B8%B8%E8%80%83%E9%97%AE%E9%A2%98/">
+                            【八股文】Redis常考问题
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            1. Redis常见数据结构及应用场景?
+String：最常用，缓存对象、计数器（比如点赞数、浏览量）；
+Hash：存储对象，适合保存用户信息；
+List：消息队列，支持阻塞操作；
+Set：去重，抽奖系统、好友推荐；
+ZSet：有序集合，排行榜、延迟队列。
+
+项目结合：我在项目中主要用过String存储用户弹窗标记，避免重复查询数据库；ZSet在赛季排名系统中也非常典型，可以用来存储用户分数...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Sep 15 2025 23:32:31 GMT+0800">
+                
+                    2025-09-15
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">面试准备</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/Redis/">Redis</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/09/15/%E3%80%90%E5%85%AB%E8%82%A1%E6%96%87%E3%80%91Redis%E5%B8%B8%E8%80%83%E9%97%AE%E9%A2%98/">阅读全文<span class="seo-reader-text">【八股文】Redis常考问题</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -1111,75 +1186,6 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2025/08/11/%E3%80%90%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E3%80%91%E5%8A%9B%E6%89%A31122-%E6%95%B0%E7%BB%84%E7%9A%84%E7%9B%B8%E5%AF%B9%E6%8E%92%E5%BA%8F/">
-                            【刷题记录】力扣1122-数组的相对排序
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            题目：给你两个数组，arr1 和 arr2，arr2 中的元素各不相同，arr2 中的每个元素都出现在 arr1 中。对 arr1 中的元素进行排序，使 arr1 中项的相对顺序和 arr2 中的相对顺序相同。未在 arr2 中出现过的元素需要按照升序放在 arr1 的末尾。
-示例1：输入： arr1 &#x3D; [2,3,1,3,2,4,6,7,9,2,19], arr2 &#x3D; ...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Mon Aug 11 2025 23:17:31 GMT+0800">
-                
-                    2025-08-11
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">算法学习</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%88%B7%E9%A2%98/">刷题</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2025/08/11/%E3%80%90%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E3%80%91%E5%8A%9B%E6%89%A31122-%E6%95%B0%E7%BB%84%E7%9A%84%E7%9B%B8%E5%AF%B9%E6%8E%92%E5%BA%8F/">阅读全文<span class="seo-reader-text">【刷题记录】力扣1122-数组的相对排序</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
                         <a href="/2025/08/11/%E3%80%90%E5%85%AB%E8%82%A1%E6%96%87%E3%80%91Spring%20%EF%BC%86%20SpringBoot%E9%9D%A2%E8%AF%95%E9%A2%98/">
                             【八股文】Spring ＆ SpringBoot面试题
                         </a>
@@ -1237,6 +1243,75 @@ Spring Boot 通过 @EnableAutoConfiguration 注解启动自动配置功能；
     </div>
 
     <a href="/2025/08/11/%E3%80%90%E5%85%AB%E8%82%A1%E6%96%87%E3%80%91Spring%20%EF%BC%86%20SpringBoot%E9%9D%A2%E8%AF%95%E9%A2%98/">阅读全文<span class="seo-reader-text">【八股文】Spring ＆ SpringBoot面试题</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/08/11/%E3%80%90%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E3%80%91%E5%8A%9B%E6%89%A31122-%E6%95%B0%E7%BB%84%E7%9A%84%E7%9B%B8%E5%AF%B9%E6%8E%92%E5%BA%8F/">
+                            【刷题记录】力扣1122-数组的相对排序
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            题目：给你两个数组，arr1 和 arr2，arr2 中的元素各不相同，arr2 中的每个元素都出现在 arr1 中。对 arr1 中的元素进行排序，使 arr1 中项的相对顺序和 arr2 中的相对顺序相同。未在 arr2 中出现过的元素需要按照升序放在 arr1 的末尾。
+示例1：输入： arr1 &#x3D; [2,3,1,3,2,4,6,7,9,2,19], arr2 &#x3D; ...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Aug 11 2025 23:17:31 GMT+0800">
+                
+                    2025-08-11
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">算法学习</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%88%B7%E9%A2%98/">刷题</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2025/08/11/%E3%80%90%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E3%80%91%E5%8A%9B%E6%89%A31122-%E6%95%B0%E7%BB%84%E7%9A%84%E7%9B%B8%E5%AF%B9%E6%8E%92%E5%BA%8F/">阅读全文<span class="seo-reader-text">【刷题记录】力扣1122-数组的相对排序</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1312,98 +1387,6 @@ Spring Boot 通过 @EnableAutoConfiguration 注解启动自动配置功能；
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/08/06/APP%E5%8D%87%E7%BA%A7%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F/">
-                            App升级管理方式
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            最近需要做一个App包升级管理平台，所以就去了解了一下各种方案，以及各种公司究竟是如何对App包进行升级管理的。
-主要包括：
-
-MDM
-蒲公英平台
-公司内部自研升级平台
-各大厂真实在用的方式
-
-APP升级管理方式全景图
-
-
-升级方式
-适用场景
-是否支持强制更新
-安装是否静默
-用户体验
-成本 &#x2F; 技术门槛
-典型代表
-
-
-
-1. MDM 管理
-企业设备管理、封闭场景
-✅ 支持
-✅ 支持...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Aug 06 2025 22:57:31 GMT+0800">
-                
-                    2025-08-06
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/App%E5%8D%87%E7%BA%A7/">App升级</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2025/08/06/APP%E5%8D%87%E7%BA%A7%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F/">阅读全文<span class="seo-reader-text">App升级管理方式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -1434,7 +1417,7 @@ APP升级管理方式全景图
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 14 篇文章
+                        共撰写了 15 篇文章
                     </span>
                     
                 </p>
