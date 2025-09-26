@@ -123,7 +123,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://teacupxuan.github.io/2025/08/31/web1 → web2 → web3/"/>
+    <link rel="canonical" href="https://teacupxuan.github.io/2025/09/26/线程池详解/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -133,16 +133,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Web1 → Web2 → Web3">
-<meta property="og:url" content="https://teacupxuan.github.io/2025/08/31/Web1%20%E2%86%92%20Web2%20%E2%86%92%20Web3/index.html">
+<meta property="og:title" content="线程池详解">
+<meta property="og:url" content="https://teacupxuan.github.io/2025/09/26/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="teacupxuan的博客">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-08-31T06:43:31.000Z">
-<meta property="article:modified_time" content="2025-08-31T06:43:42.459Z">
+<meta property="article:published_time" content="2025-09-26T15:32:31.000Z">
+<meta property="article:modified_time" content="2025-09-26T15:32:36.314Z">
 <meta property="article:author" content="teacupxuan">
-<meta property="article:tag" content="互联网">
+<meta property="article:tag" content="后端架构">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
     
@@ -156,7 +156,7 @@
     
     <title>
         
-            Web1 → Web2 → Web3 | teacupxuan的博客
+            线程池详解 | teacupxuan的博客
         
     </title>
 
@@ -543,7 +543,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Web1 → Web2 → Web3</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">线程池详解</h1>
 			</div>
 			
 		</div>
@@ -564,15 +564,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-08-31 14:43:31</span>
-        <span class="mobile">2025-08-31 14:43:31</span>
+        <span class="desktop">2025-09-26 23:32:31</span>
+        <span class="mobile">2025-09-26 23:32:31</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-08-31 14:43:42</span>
-            <span class="mobile">2025-08-31 14:43:42</span>
+            <span class="desktop">2025-09-26 23:32:36</span>
+            <span class="mobile">2025-09-26 23:32:36</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -600,7 +600,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
+                        <a href="/tags/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84/">后端架构</a>&nbsp;
                     </li>
                 
             </ul>
@@ -626,99 +626,110 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>最近在公司和同事聊天，发现他前公司是做Web3的，后面老板被抓了，工资都发不出来。这激发了我的兴趣，到底什么是Web3？这个词我一直有听说，但我只有模模糊糊的概念，并不清楚到底是什么。于是，今天来系统学习一下到底是什么Web3？</p>
-<p>既然有Web3，那么就有Web1和Web2。接下来会依次介绍Web1、Web2和Web3。</p>
-<h4 id="🌐-Web1（大约-1990s-2005）"><a href="#🌐-Web1（大约-1990s-2005）" class="headerlink" title="🌐 Web1（大约 1990s - 2005）"></a>🌐 Web1（大约 1990s - 2005）</h4><p>特点：只读</p>
+			<h4 id="1-线程池到底创建了什么"><a href="#1-线程池到底创建了什么" class="headerlink" title="1.  线程池到底创建了什么?"></a>1.  线程池到底创建了什么?</h4><p>当你在程序里初始化一个线程池时，主要创建了以下几个关键内容：<br>    <strong>1.</strong> <strong>任务队列</strong><br>        - 存放还没被执行的任务<br>        - 本质就是一个阻塞队列<br>    <strong>2. 工作线程</strong><br>        - 线程池提前创建（或按需创建）一定数量的线程，称为“工作线程”。<br>        - 这些线程不会立即退出，而是一直存活，等待从队列里取任务。<br>    <strong>3. 线程池管理器</strong><br>        - 负责整体调度，比如：<br>            - 接收任务<br>            - 分配任务到线程<br>            - 动态扩容&#x2F;缩容线程<br>            - 超时回收闲置线程</p>
+<p>所以：线程池不是“只是一堆线程”, 而是 <strong>管理器+线程集合+任务队列</strong> 的组合。</p>
+<h4 id="2-线程池中哪些东西可以复用？"><a href="#2-线程池中哪些东西可以复用？" class="headerlink" title="2.  线程池中哪些东西可以复用？"></a>2.  线程池中哪些东西可以复用？</h4><p>可以复用的部分：</p>
 <ul>
-<li>这是互联网的早期阶段，网页基本是<strong>静态网页</strong></li>
-<li>网站内容主要由企业或个人发布，用户只能浏览，几乎没有互动。</li>
-<li>典型代表：雅虎目录、早期的新浪、网易、个人主页。</li>
-<li>用户是“读者”，没有多少“参与感”。</li>
+<li><strong>线程对象：</strong><br>  创建一个线程成本很高（涉及系统调用、栈内存分配、内核调度器注册），如果每次执行任务都新建线程再销毁，开销大。线程池中的工作线程是长期存活的，执行完一个任务后不会销毁，而是继续回到队列里等待下一个任务。</li>
+<li><strong>上下文环境：</strong><br>  每个线程会分配一个<strong>线程栈、寄存器上下文、TLS（Thread Local Storage）</strong> 等。线程池避免了这些反复创建和销毁。</li>
 </ul>
-<p>举例：像一本在线的报纸，你只能读，不能评论、不能互动。</p>
-<h4 id="🌐-Web2（大约-2005-至今）"><a href="#🌐-Web2（大约-2005-至今）" class="headerlink" title="🌐 Web2（大约 2005 - 至今）"></a>🌐 Web2（大约 2005 - 至今）</h4><p>特点：可读写</p>
+<p>不能复用的部分：</p>
 <ul>
-<li>用户不仅能浏览，还能<strong>参与生产内容</strong>（UGC——User Generated Content）。</li>
-<li>平台经济崛起：社交媒体、短视频、电商平台。</li>
-<li>互动性极强，用户既是消费者也是生产者，但是数据和收益主要被平台掌控。</li>
-<li>典型代表：Facebook、YouTube、微博、知乎、抖音。</li>
+<li><strong>任务本身</strong>（Runnable&#x2F;Callable）：每次提交的任务对象都是新的，执行完就结束。</li>
+<li><strong>任务数据</strong>：任务运行时使用的数据不会自动保存下来，任务结束就释放。</li>
 </ul>
-<p>举例：所有人都能在微博发动态、在抖音发视频，但平台拥有数据的所有权和绝大部分收益。</p>
-<h4 id="Web3（正在发展中，未来趋势）"><a href="#Web3（正在发展中，未来趋势）" class="headerlink" title="Web3（正在发展中，未来趋势）"></a>Web3（正在发展中，未来趋势）</h4><p>特点：可读写 + 可拥有</p>
+<h4 id="3-线程复用的具体流程"><a href="#3-线程复用的具体流程" class="headerlink" title="3. 线程复用的具体流程"></a>3. 线程复用的具体流程</h4><p>假设你调用了 <code>threadPool.excute(task)</code>, 流程是这样的：<br>    1. 提交任务<br>        任务放进线程池的任务队列。<br>    2. 工作线程提取任务<br>        空闲的工作线程会阻塞在队列的<code>take()</code>操作上，一旦有新任务，它立刻取出。<br>    3. 执行任务<br>        工作线程调用<code>task.run()</code>方法，执行具体逻辑。<br>    4. 任务结束，线程不销毁<br>        执行完后，线程不会退出，而是再次回到“取任务”的循环，继续等待下一个任务。</p>
+<p>这就是“复用”的核心：线程活着，但执行的任务不断切换。</p>
+<h4 id="4-线程池如何调度和管理？"><a href="#4-线程池如何调度和管理？" class="headerlink" title="4. 线程池如何调度和管理？"></a>4. 线程池如何调度和管理？</h4><p>线程池不是死板的，它有一些策略：</p>
 <ul>
-<li>基于<strong>区块链、去中心化</strong>的理念。</li>
-<li>数据、内容和资产的所有权回归用户（数字身份、NFT（非同质化代币）、代币）。</li>
-<li>用户不只是内容的生产者，还是资产拥护者，能从中获益。</li>
-<li>强调<strong>去中心化应用</strong>，由智能合约驱动，而不是传统公司平台。</li>
-<li>典型代表：以太访、NFT、去中心化社交。</li>
-</ul>
-<p>举例：你在Web3的平台上写一篇文章，可以直接铸造成NFT，别人打赏、购买、收益直接归你，而不是被平台抽走大部分。</p>
-<h4 id="Web3如何实现数据所有权回归用户？"><a href="#Web3如何实现数据所有权回归用户？" class="headerlink" title="Web3如何实现数据所有权回归用户？"></a>Web3如何实现数据所有权回归用户？</h4><p>比喻：租房 vs 买房</p>
-<ul>
-<li>在Web2，你就像是住在<strong>租来的房子</strong> （平台：微博、抖音、YouTube）。<ul>
-<li>你可以装修（发帖子、上传视频），但房子产权不是你的。</li>
-<li>房东（平台）可以随时把你赶走（封号、删帖）。</li>
-<li>你做出的装修（数据、内容）最后都归房东受益（平台拿走流量和收益）。</li>
-</ul>
+<li><p><strong>核心线程数</strong><br>  一开始只保留这么多线程</p>
 </li>
-<li>在Web3，你就像是拥有了 <strong>自己的房子（区块链上的钱包地址）</strong>。<ul>
-<li>房产证（私钥）在你手里，别人拿不走。</li>
-<li>你写的文章、发的照片（数据、NFT）都记录在区块链上，属于你。</li>
-<li>如果有人想用或买你的东西，收益会直接进你的账户，而不是先被平台抽成。</li>
-</ul>
+<li><p><strong>最大线程数</strong><br>  当任务很多、队列塞不下时，会临时增加线程，直到这个上限。</p>
 </li>
-</ul>
-<p>核心原理</p>
+<li><p><strong>空闲回收</strong><br>  当线程闲置超过一定时间，就会被回收销毁，避免浪费资源。</p>
+</li>
+<li><p><strong>拒绝策略</strong><br>  如果任务太多，队列满了、线程也到达上限，就会触发拒绝策略（抛异常、丢弃、调用方法执行等）。</p>
+<p>java的线程池里面有4种内置策略：</p>
 <ol>
-<li>账户（钱包地址）归你自己控制<ul>
-<li>Web2：你的账号是“借”平台的，微博、微信一关，你就失去了账号。</li>
-<li>Web3：你的账号是一个区块链钱包（例如 0x1234…），它属于你，只要你有私钥，谁也关不了。</li>
+<li>AbortPolicy（默认）<ul>
+<li><strong>做法</strong>：直接抛出<code>RejectedExecutionException</code> 异常。</li>
+<li><strong>特点</strong>：强制提醒调用方“任务没执行”，最严格。</li>
+<li><strong>适用场景</strong>：不能丢任务的系统（调用方必须处理异常）。</li>
 </ul>
 </li>
-<li>数据存在“大家的账本”里，而不是平台的数据库<ul>
-<li>Web2：你的数据存在腾讯、字节的数据库里，他们有最终控制权。</li>
-<li>Web3：数据写在区块链（像一本公开账本），所有人都能验证，没人能偷偷改掉或删掉。</li>
+<li>CallerRunsPolicy<ul>
+<li><strong>做法</strong>：由<strong>提交任务的线程</strong>自己来执行这个任务。</li>
+<li><strong>特点</strong>：不会丢任务，但会拖慢提交方的速度，从而间接“限流”。</li>
+<li><strong>适用场景</strong>：允许降低吞吐量来保护系统，比如后台批处理。</li>
 </ul>
 </li>
-<li>收益直接到你钱包<ul>
-<li>Web2：你发视频，广告费先到平台，平台分给你一点点。</li>
-<li>Web3：别人打赏、购买 NFT，钱直接进你的钱包，不经过中间人。</li>
+<li>DiscardPolicy<ul>
+<li><strong>做法</strong>：直接丢弃这个任务，不抛异常。</li>
+<li><strong>特点</strong>：任务“静默消失”，调用方不知道。</li>
+<li><strong>适用场景</strong>：允许丢任务且不在意，比如日志上报、监控采样。</li>
+</ul>
+</li>
+<li>DiscardOldestPolicy<ul>
+<li><strong>做法</strong>：丢掉队列中<strong>最旧的任务</strong>，再尝试提交新任务。</li>
+<li><strong>特点</strong>：新任务优先，旧任务可能永远执行不到。</li>
+<li><strong>适用场景</strong>：实时性比完整性更重要的系统，比如缓存刷新。</li>
 </ul>
 </li>
 </ol>
-<p>再举一个生活例子</p>
-<ul>
-<li><strong>Web2 像淘宝</strong>：你开店，店铺规则、结算、顾客关系都在淘宝手里，淘宝随时能封你店。</li>
-<li><strong>Web3 像自己摆摊</strong>：摊位（钱包地址）是你的，顾客直接扫码给你钱（加密货币转账），不用担心被平台抽走手续费或封号。</li>
+</li>
 </ul>
-<h4 id="总结对比"><a href="#总结对比" class="headerlink" title="总结对比"></a>总结对比</h4><table>
-<thead>
-<tr>
-<th>阶段</th>
-<th>特点</th>
-<th>用户角色</th>
-<th>数据归属</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Web1</strong></td>
-<td>静态网页，只读</td>
-<td>读者</td>
-<td>网站拥有</td>
-</tr>
-<tr>
-<td><strong>Web2</strong></td>
-<td>交互式平台，可写</td>
-<td>内容生产者</td>
-<td>平台拥有</td>
-</tr>
-<tr>
-<td><strong>Web3</strong></td>
-<td>去中心化，可拥有</td>
-<td>内容生产者 + 资产拥有者</td>
-<td>用户自己</td>
-</tr>
-</tbody></table>
+<h4 id="5-比喻"><a href="#5-比喻" class="headerlink" title="5. 比喻"></a>5. 比喻</h4><p>把线程池想象成一个 <strong>快餐店</strong>：</p>
+<ul>
+<li><strong>线程池管理器</strong> → 店长</li>
+<li><strong>工作线程</strong> → 店员</li>
+<li><strong>任务队列</strong> → 顾客等待区</li>
+<li><strong>任务</strong> → 顾客的订单</li>
+</ul>
+<p>流程是这样的：<br>顾客下单（提交任务） → 等待区排队（任务队列） → 店员接单（工作线程取任务） → 做饭（执行任务） → 店员继续待命（线程复用，不会辞职）。</p>
+<p>如果顾客爆满（任务太多）：</p>
+<ul>
+<li>店长可能临时招兼职店员（扩容线程）。</li>
+<li>如果实在爆满，店长会说“不接单了”（拒绝策略）。</li>
+</ul>
+<h4 id="6-小结"><a href="#6-小结" class="headerlink" title="6. 小结"></a>6. 小结</h4><ul>
+<li><strong>线程池创建了：任务队列、工作线程集合、调度管理器。</strong></li>
+<li><strong>复用的是：线程本身及其运行环境。</strong></li>
+<li><strong>任务不可复用，每次提交一个新任务对象。</strong></li>
+<li><strong>复用原理：线程执行完任务不销毁，而是回到循环继续取任务。</strong></li>
+<li><strong>管理机制：核心数、最大数、回收时间、拒绝策略。</strong></li>
+</ul>
+<h4 id="7-Go语言没有线程池的原因？"><a href="#7-Go语言没有线程池的原因？" class="headerlink" title="7. Go语言没有线程池的原因？"></a>7. Go语言没有线程池的原因？</h4><p>分几个层次来解释：</p>
+<h6 id="1-传统语言为什么需要线程池？"><a href="#1-传统语言为什么需要线程池？" class="headerlink" title="1. 传统语言为什么需要线程池？"></a>1. 传统语言为什么需要线程池？</h6><p>像**java &#x2F; C++**：</p>
+<ul>
+<li>创建 &#x2F; 销毁一个线程开销很大（涉及内核态、栈内存分配、系统调用）。</li>
+<li>线程数量有限（受操作系统调度和内存限制），太多线程会导致上下文切换成本巨大。</li>
+</ul>
+<p>所以要搞“线程池”，提前创建好线程，反复复用，减少开销。</p>
+<h6 id="2-Go的设计思路"><a href="#2-Go的设计思路" class="headerlink" title="2. Go的设计思路"></a>2. Go的设计思路</h6><p>Go引入了 <strong>goroutine + 调度器 （M:N模型）</strong>：</p>
+<ul>
+<li><strong>Goroutine</strong>：极轻量的协程，创建成本只有几KB栈空间，不是一个“重量级线程”。</li>
+<li><strong>Go调度器（GMP模型）</strong>：把成千上万个goroutine自动调度到少量操作系统线程（M）上执行。</li>
+</ul>
+<blockquote>
+<p>所以你写的 <code>go func() &#123;...&#125;</code> , 底层不是直接起一个OS线程，而是起一个goroutine，由 Go runtime 帮你调度。</p>
+</blockquote>
+<p>这就相当于Go runtime 内部已经帮你实现了“一个大线程池”。</p>
+<h6 id="3-为什么-Go-不需要显式线程池？"><a href="#3-为什么-Go-不需要显式线程池？" class="headerlink" title="3. 为什么 Go 不需要显式线程池？"></a>3. 为什么 Go 不需要显式线程池？</h6><ul>
+<li>在 Go 里，goroutine 就是“任务单元”，调度器会自动把它们安排到系统线程上。</li>
+<li>你要起 1 万个 goroutine 没问题，Go runtime 会自动复用少量 OS 线程。</li>
+<li>因此你不需要手动管理“线程池”，只需要限制 goroutine 的并发量（比如控制同时运行多少个 worker）。</li>
+</ul>
+<h6 id="4-那么Go里需要“池化”吗"><a href="#4-那么Go里需要“池化”吗" class="headerlink" title="4. 那么Go里需要“池化”吗?"></a>4. 那么Go里需要“池化”吗?</h6><p>有，但不是 <strong>线程池</strong>，而是：</p>
+<ol>
+<li><strong>连接池</strong>（DB&#x2F;HTTP 连接池）</li>
+<li><strong>对象池</strong>（<code>sync.Pool</code>，用来复用对象，减少 GC 压力）</li>
+<li><strong>Worker Pool</strong>（goroutine 池，本质是限制同时运行的 goroutine 数量，避免无限制创建）</li>
+</ol>
+<h6 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h6><ul>
+<li>Go 里没有“线程池”，因为 goroutine 本身就足够轻量，runtime 已经在底层做了调度和线程复用。</li>
+<li>你通常只需要控制“并发数”，用 channel + worker pool 实现就行。</li>
+<li>如果是对象&#x2F;资源的复用，Go 提供 <code>sync.Pool</code>、连接池等机制。</li>
+</ul>
 
 		</div>
 
@@ -726,18 +737,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> Web1 → Web2 → Web3</li>
+        <li><strong>标题:</strong> 线程池详解</li>
         <li><strong>作者:</strong> teacupxuan</li>
         <li><strong>创建于
-                :</strong> 2025-08-31 14:43:31</li>
+                :</strong> 2025-09-26 23:32:31</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-08-31 14:43:42
+                    :</strong> 2025-09-26 23:32:36
             </li>
         
         <li>
-            <strong>链接:</strong> https://teacupxuan.github.io/2025/08/31/Web1 → Web2 → Web3/
+            <strong>链接:</strong> https://teacupxuan.github.io/2025/09/26/线程池详解/
         </li>
         <li>
             <strong>
@@ -759,7 +770,7 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/">#互联网</a>&nbsp;
+				<a href="/tags/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84/">#后端架构</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -770,23 +781,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/09/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9F%A5%E4%B8%8D%E5%88%B0%E5%86%99%E5%85%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8E%92%E6%9F%A5%E6%96%B9%E6%B3%95/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">数据库客户端查不到写入的数据排查方法</span>
-						<span class="post-nav-item">上一篇</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/08/18/%E5%86%92%E7%83%9F%E6%B5%8B%E8%AF%95/">
+				<a class="next" rel="next" href="/2025/09/15/%E3%80%90%E5%85%AB%E8%82%A1%E6%96%87%E3%80%91Redis%E5%B8%B8%E8%80%83%E9%97%AE%E9%A2%98/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">冒烟测试</span>
+						<span class="post-nav-title-item truncate max-w-48">【八股文】Redis常考问题</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -861,7 +860,7 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">Web1 → Web2 → Web3</div>
+		<div class="page-title">线程池详解</div>
 		
 
 	</div>
