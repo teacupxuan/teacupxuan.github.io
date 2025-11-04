@@ -123,7 +123,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://teacupxuan.github.io/2025/08/05/手机软件没更新却有了新功能？---原理揭晓/"/>
+    <link rel="canonical" href="https://teacupxuan.github.io/2025/11/04/postgresql学习笔记/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -133,16 +133,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手机软件没更新却有了新功能？---原理揭晓">
-<meta property="og:url" content="https://teacupxuan.github.io/2025/08/05/%E6%89%8B%E6%9C%BA%E8%BD%AF%E4%BB%B6%E6%B2%A1%E6%9B%B4%E6%96%B0%E5%8D%B4%E6%9C%89%E4%BA%86%E6%96%B0%E5%8A%9F%E8%83%BD%EF%BC%9F---%E5%8E%9F%E7%90%86%E6%8F%AD%E6%99%93/index.html">
+<meta property="og:title" content="PostgreSQL学习笔记">
+<meta property="og:url" content="https://teacupxuan.github.io/2025/11/04/PostgreSQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="teacupxuan的博客">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-08-05T14:18:31.000Z">
-<meta property="article:modified_time" content="2025-08-06T14:17:57.999Z">
+<meta property="article:published_time" content="2025-11-04T15:36:31.000Z">
+<meta property="article:modified_time" content="2025-11-04T15:36:16.630Z">
 <meta property="article:author" content="teacupxuan">
-<meta property="article:tag" content="App更新">
+<meta property="article:tag" content="PostgreSQL">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
     
@@ -156,7 +156,7 @@
     
     <title>
         
-            手机软件没更新却有了新功能？---原理揭晓 | teacupxuan的博客
+            PostgreSQL学习笔记 | teacupxuan的博客
         
     </title>
 
@@ -543,7 +543,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">手机软件没更新却有了新功能？---原理揭晓</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">PostgreSQL学习笔记</h1>
 			</div>
 			
 		</div>
@@ -564,15 +564,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-08-05 22:18:31</span>
-        <span class="mobile">2025-08-05 22:18:31</span>
+        <span class="desktop">2025-11-04 23:36:31</span>
+        <span class="mobile">2025-11-04 23:36:31</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-08-06 22:17:57</span>
-            <span class="mobile">2025-08-06 22:17:57</span>
+            <span class="desktop">2025-11-04 23:36:16</span>
+            <span class="mobile">2025-11-04 23:36:16</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -600,7 +600,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/App%E6%9B%B4%E6%96%B0/">App更新</a>&nbsp;
+                        <a href="/tags/PostgreSQL/">PostgreSQL</a>&nbsp;
                     </li>
                 
             </ul>
@@ -626,183 +626,114 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>最近微信推出了一个新功能——朋友圈评论图片，这引发了我的一个疑问：为什么手机软件没更新但却有了新功能？这是如何实现的？我带着这些疑惑和Chatgpt进行了一次深入探讨，以下是探讨的结果。</p>
-<blockquote>
-<p>一句话总结：这是因为App实际上通过 <strong>远程配置 + 动态资源加载 + Web容器技术</strong> 等方式，实现了”无版本更新的功能下发“。</p>
-</blockquote>
-<h3 id="这背后是怎么做到的？"><a href="#这背后是怎么做到的？" class="headerlink" title="这背后是怎么做到的？"></a>这背后是怎么做到的？</h3><p>我们拆开来说，常见有以下几种方式：</p>
-<h4 id="1-远程配置"><a href="#1-远程配置" class="headerlink" title="1. 远程配置"></a>1. 远程配置</h4><ul>
-<li>产品团队通过服务端配置不同参数，实现控制App的某些行为，比如：<ul>
-<li>显示隐藏某个按钮</li>
-<li>开启关闭某个功能</li>
-<li>替换文案、图片、入口地址</li>
+			<ul>
+<li><strong>PostgreSQL像是一个“瑞士军刀”</strong>：它功能极其丰富，严格遵守SQL标准，特别擅长处理复杂的数据类型和复杂的查询。</li>
+<li><strong>MySQL像是一把“锋利的菜刀“</strong>：它速度快，简单易用，特别适合处理高并发的读请求，是Web应用的传统首选。</li>
+</ul>
+<h3 id="一、PostgreSQL的架构是什么样的？"><a href="#一、PostgreSQL的架构是什么样的？" class="headerlink" title="一、PostgreSQL的架构是什么样的？"></a>一、PostgreSQL的架构是什么样的？</h3><p>PostgreSQL的架构核心是<strong>多进程模型</strong>，而不是很多像其他数据库（包括MySQL的InnoDB引擎）那样的多线程模型。</p>
+<p>当你启动一个PostgreSQL服务时，会发生以下事情：</p>
+<ol>
+<li>启动一个”总管“进程：<ul>
+<li>这个进程时所有PostgreSQL进程的父进程，它负责管理整个数据库实例的生命周期。</li>
+<li>它会预先分配一块共享内存，这是PG架构的核心。这块内存里包含了：<ul>
+<li>共享缓冲区：这是PG最重要的缓存区域，用来缓存从磁盘读取的数据页（表和索引）。客户端的读写操作主要是在这里进行的。</li>
+<li>预写日志缓冲区：WAL（Write-Ahead Logging）是保证数据不丢失的关键。任何数据的修改都会现在这里被记录成日志，然后再写入磁盘。</li>
 </ul>
 </li>
 </ul>
-<p> 代表技术：</p>
+</li>
+<li>启动一系列”工人“进程<ul>
+<li>总管进程还会启动一些常驻的后台”工人”进程，它们各自负责专项任务，比如：<ul>
+<li>WAL写入进程：负责把WAL缓冲区里的日志刷到磁盘上。</li>
+<li>后台写入进程：负责把共享缓冲区里被修改过的”脏“数据页在后台慢慢写回磁盘，避免I&#x2F;O风暴。</li>
+<li>检查点进行：定期执行”检查点“，确保所有在某个时间点之前的数据都已安全落盘，这是数据库恢复的关键。</li>
+<li>自动清理进程：PG使用一种叫MVCC的技术（下面会讲），这个进程负责自动清理过期的数据版本，回收空间。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>当一个客户端连接过来时：<ul>
+<li>”总管“进程会fork（派生）出一个全新的、独立的子进程，这个子进程叫做后端进程。</li>
+<li>这个后端进程只为这一个客户端连接服务。你应用的所有SQL查询、事务处理，都由这个专属的进程来完成的。</li>
+<li>这个进程会使用共享内存来读写数据，同时它也有自己的私有内存，用来做排序、哈希连接等操作。</li>
+</ul>
+</li>
+</ol>
+<p>这个架构的优缺点：</p>
 <ul>
-<li>Firebase Remote Config (Android &#x2F; IOS)</li>
-<li>自研配置中心（腾讯、阿里、美团都有）</li>
+<li>优点（稳定性）：由于每个连接都是一个独立的进程，如果某个连接因为Bug或恶意查询崩溃了，它只会导致自己的那个后端进程死掉，不会影响到其他连接和整个数据库服务。</li>
+<li>缺点（连接开销）：如果有一万个并发连接，理论上就要创建一万个进程。这在操作系统层面上的开销（内存、CPU调度）会非常大。因此，在实际应用中，PostgreSQL前面通常会挂一个连接池，比如<code>PgBouncer</code>，来复用连接，解决这个问题。</li>
 </ul>
-<blockquote>
-<p>App启动时会从远程拉取配置，然后根据配置决定展示什么功能。</p>
-</blockquote>
-<h4 id="2-H5-容器-小程序-动态页面加载"><a href="#2-H5-容器-小程序-动态页面加载" class="headerlink" title="2. H5 容器&#x2F;小程序&#x2F;动态页面加载"></a>2. H5 容器&#x2F;小程序&#x2F;动态页面加载</h4><ul>
-<li>App的某些页面是通过WebView加载的网页内容（例如首页某个banner点进去）</li>
-<li>页面实际内容由服务器端控制，不需要发布新版本</li>
-<li>广告页、活动页、运营页面，全部可以远程更新</li>
+<h3 id="二、为什么有了MySQL还要有PostgreSQL？"><a href="#二、为什么有了MySQL还要有PostgreSQL？" class="headerlink" title="二、为什么有了MySQL还要有PostgreSQL？"></a>二、为什么有了MySQL还要有PostgreSQL？</h3><p>这是一个“萝卜白菜，各有所爱”的问题，但更是“锤子和钳子”的问题。它们被设计出来解决的侧重点不同。</p>
+<ol>
+<li>核心定位不同<ul>
+<li>MySQL（关系型数据库RDBMS）：它的设计目标是快速、简单、可靠。它非常适合结构清晰的表（比如用户表、订单表），并且在Web应用（高并发读）场景下表现极其出色（尤其是在早期的LAMP架构中）。</li>
+<li>PostgreSQL（对象关系型数据库ORDBMS）：它从设计之初就更“学院派”，目标是功能强大、严格合规、可扩展性强。它不仅支持标准的关系型数据，还支持“对象”特性，比如：<ul>
+<li>丰富的数据类型：原生支持JSON &#x2F; JSONB、数组、地理空间数据、键值对等。</li>
+<li>强大的扩展性：你可以自定义数据类型、自定义函数、甚至自定义索引类型。</li>
 </ul>
-<blockquote>
-<p>我们看到的功能变化，可能是Web页面内容更新了。</p>
-</blockquote>
-<h4 id="3-AB测试或灰度发布"><a href="#3-AB测试或灰度发布" class="headerlink" title="3. AB测试或灰度发布"></a>3. AB测试或灰度发布</h4><ul>
-<li>有些用户看到的功能是新的，有些用户没有，是因为被分流到不同”实验组“了</li>
-<li>这也是通过服务端控制实现的，不需要用户更新版本</li>
+</li>
 </ul>
-<blockquote>
-<p>用户可能被后台系统划分进了某个”试验组“，于是看到的功能变了。</p>
-</blockquote>
-<h4 id="4-动态资源包或热更新技术"><a href="#4-动态资源包或热更新技术" class="headerlink" title="4.动态资源包或热更新技术"></a>4.动态资源包或热更新技术</h4><ul>
-<li>一些App使用热更新框架（如 React Native 的 CodePush、Weex 的动态 bundle，甚至 Flutter 也能做）</li>
-<li>样式、脚本、业务逻辑可以被服务端动态下发</li>
-<li>用户无需更新App，也能体验到代码层面的功能更新</li>
-</ul>
-<blockquote>
-<p>这类更新<strong>能力更强大但有政策限制</strong>，IOS审核特别严格，不能用热更新修改原生代码逻辑。</p>
-</blockquote>
-<h3 id="这种“无感知更新”的优缺点"><a href="#这种“无感知更新”的优缺点" class="headerlink" title="这种“无感知更新”的优缺点"></a>这种“无感知更新”的优缺点</h3><h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ul>
-<li>不打扰用户，不强依赖用户手动更新</li>
-<li>运营可灵活控制功能、配置和上线时间</li>
-<li>快速迭代、试错成本低</li>
-</ul>
-<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><ul>
-<li>开发复杂度增加</li>
-<li>服务端控制逻辑多，容易出bug</li>
-<li>若远程配置出错，可能影响用户体验（比如打不开页面）</li>
-</ul>
-<h3 id="简单例子说明"><a href="#简单例子说明" class="headerlink" title="简单例子说明"></a>简单例子说明</h3><p>假设你打开了一个电商App，本周你发现：</p>
-<ul>
-<li>首页多了一个“暑期大促”活动入口</li>
-<li>订单页的按钮从“再来一单”变成了“继续购买”</li>
-</ul>
-<p>但你并没有更新App，原因可能是：</p>
-<ul>
-<li>活动入口是H5页面，服务器新增了一个banner配置；</li>
-<li>”按钮文案“是远程配置项，服务端通过AB实验推了新文案给你。</li>
-</ul>
-<h4 id="那么问题来了，那为什么有些功能是一定要进行更新后才有的？"><a href="#那么问题来了，那为什么有些功能是一定要进行更新后才有的？" class="headerlink" title="那么问题来了，那为什么有些功能是一定要进行更新后才有的？"></a>那么问题来了，那为什么有些功能是一定要进行更新后才有的？</h4><p>这是因为这类功能<strong>无法靠配置、H5或热更新实现</strong>，必须通过<strong>客户端发新版</strong>才能生效。我们可以从”技术层面“和”产品层面“来理解这个限制。</p>
-<h3 id="必须发版才能实现的新功能，一般具备以下特征："><a href="#必须发版才能实现的新功能，一般具备以下特征：" class="headerlink" title="必须发版才能实现的新功能，一般具备以下特征："></a>必须发版才能实现的新功能，一般具备以下特征：</h3><h4 id="1-需要原生能力支持的功能（Native-API）"><a href="#1-需要原生能力支持的功能（Native-API）" class="headerlink" title="1. 需要原生能力支持的功能（Native API）"></a>1. 需要原生能力支持的功能（Native API）</h4><p>比如：</p>
+</li>
+<li>核心优势对比</li>
+</ol>
 <table>
 <thead>
 <tr>
-<th>功能类型</th>
-<th>举例</th>
+<th><strong>特性</strong></th>
+<th><strong>PostgreSQL (瑞士军刀)</strong></th>
+<th><strong>MySQL (锋利菜刀)</strong></th>
 </tr>
 </thead>
 <tbody><tr>
-<td>使用新硬件</td>
-<td>使用手机陀螺仪、UWB、蓝牙等新硬件能力</td>
+<td><strong>数据复杂性</strong></td>
+<td><strong>胜出</strong>。处理 JSONB、地理位置、数组等非结构化数据非常强。</td>
+<td>相对较弱。虽然也支持 JSON，但功能和性能通常不如 PG。</td>
 </tr>
 <tr>
-<td>调用系统服务</td>
-<td>推送权限弹窗优化、系统深色模式支持</td>
+<td><strong>SQL 标准遵从</strong></td>
+<td><strong>胜出</strong>。非常严格地遵守 SQL 标准，行为一致性高。</td>
+<td>相对宽松。有时为了性能或易用性会做一些“妥协”。</td>
 </tr>
 <tr>
-<td>拍照 &#x2F; 扫码</td>
-<td>使用原生摄像头或 AR Kit 的能力</td>
+<td><strong>并发控制 (MVCC)</strong></td>
+<td><strong>非常成熟</strong>。PG 的 MVCC 实现被广泛认为是业界标杆，读写不互斥，在高并发写入时表现稳健。</td>
+<td>也使用 MVCC (InnoDB)，但在某些高并发读写混合场景下可能不如 PG。</td>
 </tr>
 <tr>
-<td>文件访问</td>
-<td>iOS&#x2F;Android 的沙箱文件管理</td>
+<td><strong>复杂查询</strong></td>
+<td><strong>胜出</strong>。拥有非常强大的查询优化器，擅长处理复杂的多表连接 (Join)、子查询和分析函数 (Window Functions)。</td>
+<td>相对较弱。对于非常复杂的 SQL 语句，优化器可能不如 PG 智能。</td>
+</tr>
+<tr>
+<td><strong>简单读性能</strong></td>
+<td>良好。</td>
+<td>**胜出 (传统强项)**。在简单的“读密集型” Web 应用中，历史表现非常快。</td>
+</tr>
+<tr>
+<td><strong>易用性&#x2F;生态</strong></td>
+<td>学习曲线稍陡，配置稍复杂。</td>
+<td>**胜出 (传统强项)**。上手简单，文档丰富，是很多初学者的首选。</td>
 </tr>
 </tbody></table>
-<p>这些功能<strong>只能在客户端用 Java&#x2F;Kotlin&#x2F;Swift 编写并编译后生效</strong>，远程配置无法覆盖。</p>
-<h4 id="2-涉及数据结构变更-协议变更的功能"><a href="#2-涉及数据结构变更-协议变更的功能" class="headerlink" title="2. 涉及数据结构变更 &#x2F; 协议变更的功能"></a>2. 涉及数据结构变更 &#x2F; 协议变更的功能</h4><p>比如:</p>
+<ol start="3">
+<li><p>场景总结<br> 选择PostgreSQL的理由：</p>
 <ul>
-<li>新功能需要客户端与服务端使用新的接口协议（比如v2接口）</li>
-<li>数据模型结构发生了改变（例如新增了字段、修改了字段含义）</li>
-<li>UI渲染方式升级（从旧组件迁移到新组件）</li>
+<li>数据完整性至上：你的应用（比如金融、科学计算）对数据一致性和标准遵从有极高要求。</li>
+<li>复杂数据和查询：你需要存储和查询 JSON、地理空间数据、数组，或者你的报表系统有大量复杂的 JOIN 和分析需求。</li>
+<li>读写混合高并发：你的应用有大量的并发写入和更新操作，PG 的 MVCC 架构在这种场景下表现非常出色。</li>
+<li>强大的扩展性：你需要自己定义数据类型或函数来处理特定业务。</li>
 </ul>
-<p>这类变更**无法通过”配置开关”**下发，因为旧客户端根本不认识新数据结构或新接口。</p>
-<h4 id="3-重大UI框架升级-架构重构"><a href="#3-重大UI框架升级-架构重构" class="headerlink" title="3. 重大UI框架升级 &#x2F; 架构重构"></a>3. 重大UI框架升级 &#x2F; 架构重构</h4><ul>
-<li>比如从原生页面迁移到React Native &#x2F; Flutter</li>
-<li>替换底层状态管理或渲染架构</li>
-<li>性能优化、崩溃修复等需要依赖新版本的运行时行为</li>
-</ul>
-<p>这种改动属于App的”底座“变更，必须通过发版让用户下载新的客户端。</p>
-<h4 id="4-被苹果-Google-限制，不能热更新的功能"><a href="#4-被苹果-Google-限制，不能热更新的功能" class="headerlink" title="4. 被苹果 &#x2F; Google 限制，不能热更新的功能"></a>4. 被苹果 &#x2F; Google 限制，不能热更新的功能</h4><ul>
-<li>IOS App Store 明确禁止通过热更新修改原生逻辑（JS除外）</li>
-<li>苹果审核认为某些”核心功能“必须走完整提审流程</li>
-</ul>
-<p>所以一些功能为了<strong>合法合规上架</strong>，必须走一次版本更新。</p>
-<h3 id="从产品-业务角度看，也有一些”必须发版“的理由："><a href="#从产品-业务角度看，也有一些”必须发版“的理由：" class="headerlink" title="从产品 &#x2F; 业务角度看，也有一些”必须发版“的理由："></a>从产品 &#x2F; 业务角度看，也有一些”必须发版“的理由：</h3><h4 id="1-需要”主动提醒“的重大功能更新"><a href="#1-需要”主动提醒“的重大功能更新" class="headerlink" title="1. 需要”主动提醒“的重大功能更新"></a>1. 需要”主动提醒“的重大功能更新</h4><p>比如：</p>
+<p> 选择MySQL的理由：</p>
 <ul>
-<li>加入新的大模块（如短视频、AI助手）</li>
-<li>改版重大交互（新首页、新订单系统）</li>
-<li>需要用户知道并学习的功能</li>
+<li>读密集型应用：你的应用主要是读取数据，比如内容管理系统 (CMS)、博客、简单的电商网站。</li>
+<li>简单和快速：你需要快速开发和部署，对数据库的复杂功能要求不高。</li>
+<li>成熟的生态和运维：你的团队对 MySQL 非常熟悉，有成熟的运维经验和工具链。</li>
 </ul>
-<blockquote>
-<p>产品希望用户<strong>看到更新提示、主动点击更新</strong> ，提高功能曝光。</p>
-</blockquote>
-<h4 id="2-历史包兼容性维护成本过高"><a href="#2-历史包兼容性维护成本过高" class="headerlink" title="2.历史包兼容性维护成本过高"></a>2.历史包兼容性维护成本过高</h4><p>如果产品通过”配置“支持旧包和新功能，开发和测试工作量急剧上升。</p>
-<blockquote>
-<p>为了减少灰度逻辑、技术债，干脆让用户统一升级。</p>
-</blockquote>
-<h4 id="3-App商店要求定期更新版本"><a href="#3-App商店要求定期更新版本" class="headerlink" title="3. App商店要求定期更新版本"></a>3. App商店要求定期更新版本</h4><ul>
-<li>有些平台（如华为、小米）有”活跃版本检查“，要求定期提交新版本</li>
-<li>利于提升搜索权重、版本评分，维护商店形象</li>
-</ul>
-<p>所以产品会结合功能更新一起发版。</p>
-<h3 id="总结对比表"><a href="#总结对比表" class="headerlink" title="总结对比表"></a>总结对比表</h3><table>
-<thead>
-<tr>
-<th>功能类型</th>
-<th>是否可远程下发？</th>
-<th>是否需要更新 App？</th>
-<th>原因</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>文案、图片、跳转链接</td>
-<td>✅ 是</td>
-<td>❌ 不需要</td>
-<td>配置控制</td>
-</tr>
-<tr>
-<td>首页运营位、H5 活动页</td>
-<td>✅ 是</td>
-<td>❌ 不需要</td>
-<td>Web 容器加载</td>
-</tr>
-<tr>
-<td>新原生功能（如蓝牙扫码）</td>
-<td>❌ 否</td>
-<td>✅ 需要</td>
-<td>需要原生支持</td>
-</tr>
-<tr>
-<td>数据模型结构变动</td>
-<td>❌ 否</td>
-<td>✅ 需要</td>
-<td>老版本不兼容</td>
-</tr>
-<tr>
-<td>UI 组件底层重构</td>
-<td>❌ 否</td>
-<td>✅ 需要</td>
-<td>原架构不支持</td>
-</tr>
-<tr>
-<td>iOS 审核合规要求</td>
-<td>❌ 否</td>
-<td>✅ 需要</td>
-<td>热更新限制</td>
-</tr>
-</tbody></table>
-<h3 id="总结一句话"><a href="#总结一句话" class="headerlink" title="总结一句话"></a>总结一句话</h3><blockquote>
-<p>有些功能能“无感知上线”，是因为 App 被设计成“配置化+Web化”；但涉及原生能力、架构变化、数据协议变动、平台审核要求的功能，就必须通过 App 更新才能实现。</p>
-</blockquote>
-<p>如果你觉得我的文章让你有收获的话，请给我点一个赞吧！😉</p>
+</li>
+</ol>
+<p><strong>总结一下</strong>：MySQL 以其<strong>速度和易用性</strong>赢得了 Web 时代的半壁江山；而 PostgreSQL 则凭借其<strong>功能的强大性、数据处理的灵活性和严格的完整性</strong>，在今天数据日益复杂的企业级应用和大数据分析领域（OLAP）中，正变得越来越受欢迎。</p>
+<p>补充：<br><strong>LAMP</strong> 是一种经典的开源软件组合架构，广泛用于动态网站和Web应用的开发与部署。LAMP 是 <strong>Linux</strong>、<strong>Apache</strong>、<strong>MySQL</strong> 和 <strong>PHP&#x2F;Perl&#x2F;Python</strong> 的缩写，分别代表操作系统、Web服务器、数据库和编程语言。</p>
 
 		</div>
 
@@ -810,18 +741,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 手机软件没更新却有了新功能？---原理揭晓</li>
+        <li><strong>标题:</strong> PostgreSQL学习笔记</li>
         <li><strong>作者:</strong> teacupxuan</li>
         <li><strong>创建于
-                :</strong> 2025-08-05 22:18:31</li>
+                :</strong> 2025-11-04 23:36:31</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-08-06 22:17:57
+                    :</strong> 2025-11-04 23:36:16
             </li>
         
         <li>
-            <strong>链接:</strong> https://teacupxuan.github.io/2025/08/05/手机软件没更新却有了新功能？---原理揭晓/
+            <strong>链接:</strong> https://teacupxuan.github.io/2025/11/04/PostgreSQL学习笔记/
         </li>
         <li>
             <strong>
@@ -843,7 +774,7 @@
 		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
 			
 			<li class="tag-item mx-0.5">
-				<a href="/tags/App%E6%9B%B4%E6%96%B0/">#App更新</a>&nbsp;
+				<a href="/tags/PostgreSQL/">#PostgreSQL</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -854,23 +785,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/08/06/APP%E5%8D%87%E7%BA%A7%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">App升级管理方式</span>
-						<span class="post-nav-item">上一篇</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/08/03/Google%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+				<a class="next" rel="next" href="/2025/10/12/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">Google搜索引擎工作原理</span>
+						<span class="post-nav-title-item truncate max-w-48">消息队列</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -945,8 +864,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">手机软件没更新却有了新功能？---原理揭晓</div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E8%83%8C%E5%90%8E%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%B0%E7%9A%84%EF%BC%9F"><span class="nav-text">这背后是怎么做到的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E7%A7%8D%E2%80%9C%E6%97%A0%E6%84%9F%E7%9F%A5%E6%9B%B4%E6%96%B0%E2%80%9D%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">这种“无感知更新”的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BE%8B%E5%AD%90%E8%AF%B4%E6%98%8E"><span class="nav-text">简单例子说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%85%E9%A1%BB%E5%8F%91%E7%89%88%E6%89%8D%E8%83%BD%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD%EF%BC%8C%E4%B8%80%E8%88%AC%E5%85%B7%E5%A4%87%E4%BB%A5%E4%B8%8B%E7%89%B9%E5%BE%81%EF%BC%9A"><span class="nav-text">必须发版才能实现的新功能，一般具备以下特征：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E4%BA%A7%E5%93%81-%E4%B8%9A%E5%8A%A1%E8%A7%92%E5%BA%A6%E7%9C%8B%EF%BC%8C%E4%B9%9F%E6%9C%89%E4%B8%80%E4%BA%9B%E2%80%9D%E5%BF%85%E9%A1%BB%E5%8F%91%E7%89%88%E2%80%9C%E7%9A%84%E7%90%86%E7%94%B1%EF%BC%9A"><span class="nav-text">从产品 &#x2F; 业务角度看，也有一些”必须发版“的理由：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94%E8%A1%A8"><span class="nav-text">总结对比表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E5%8F%A5%E8%AF%9D"><span class="nav-text">总结一句话</span></a></li></ol>
+		<div class="page-title">PostgreSQL学习笔记</div>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81PostgreSQL%E7%9A%84%E6%9E%B6%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-text">一、PostgreSQL的架构是什么样的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E4%BA%86MySQL%E8%BF%98%E8%A6%81%E6%9C%89PostgreSQL%EF%BC%9F"><span class="nav-text">二、为什么有了MySQL还要有PostgreSQL？</span></a></li></ol>
 
 	</div>
 </div>
