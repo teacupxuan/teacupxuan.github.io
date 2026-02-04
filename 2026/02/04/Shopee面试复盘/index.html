@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="技术,编程,博客,生活">
+    
+    <meta name="author" content="teacupxuan">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://teacupxuan.github.io/2026/02/04/shopee面试复盘/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="teacupxuan的博客">
+<meta property="og:url" content="https://teacupxuan.github.io/2026/02/04/Shopee%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%98/index.html">
+<meta property="og:site_name" content="teacupxuan的博客">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-02-04T07:47:51.705Z">
+<meta property="article:modified_time" content="2026-02-04T07:46:48.230Z">
+<meta property="article:author" content="teacupxuan">
+<meta property="article:tag" content="技术,编程,博客,生活">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://teacupxuan.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/%E8%8C%B6%E6%9D%AF.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/%E8%8C%B6%E6%9D%AF.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/%E8%8C%B6%E6%9D%AF.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            teacupxuan的博客 - 分享技术与生活
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"teacupxuan.github.io","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"仰观宇宙之大，俯察品类之盛","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/dashboard","Blog":"https://teacupxuan.github.io/"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/%E8%8C%B6%E6%9D%AF.svg" class="w-full h-full rounded-xs">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                teacupxuan的博客
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    归档
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa-regular fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-regular fa-folder fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    关于
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/dashboard">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://teacupxuan.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                归档
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/dashboard">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://teacupxuan.github.io/">BLOG</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">25</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">26</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3"></h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/%E8%8C%B6%E6%9D%AF.svg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">teacupxuan</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-02-04 15:47:51</span>
+        <span class="mobile">2026-02-04 15:47:51</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-02-04 15:46:48</span>
+            <span class="mobile">2026-02-04 15:46:48</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>手撕：最大连续乘积   （注意负数维护最大值和最小值）</p>
+<p>实现 JWT + ThreadLocal + 拦截器 的身份认证机制，解决分布式环境下的无状态问题；</p>
+<p>threadlocal？</p>
+<p>jwt认证？  </p>
+<ol>
+<li>JWT是如何实现的？</li>
+</ol>
+<ul>
+<li><p>生成令牌(Login)：</p>
+<ul>
+<li><p>用户登录成功后，服务器使用密钥（Secret Key）配合算法（如HMACSHA256）生成一个JWT字符串。</p>
+</li>
+<li><p>JWT包含三部分：Header（算法信息）、Payload（载荷，存用户ID、角色等非敏感信息）、Signature（签名，防止篡改）。</p>
+</li>
+</ul>
+</li>
+<li><p>携带令牌(Request)：</p>
+<ul>
+<li><p>前端将JWT存储在LocalStorage或Cookie中。</p>
+</li>
+<li><p>后续每次请求，前端都在HTTP Header中携带Authorization：Bearer <token>。</p>
+</li>
+</ul>
+</li>
+<li><p>拦截校验(Interceptor)： </p>
+<ul>
+<li><p>我定义了一个拦截器实现 HandlerInterceptor接口。</p>
+</li>
+<li><p>在 preHandle 方法中，截取Header中的Token。</p>
+</li>
+<li><p>解析与验证：使用工具类校验Token签名是否合法、是否过期。如果非法，直接返回401错误。</p>
+</li>
+</ul>
+</li>
+<li><p>上下文存储(ThreadLocal)：</p>
+<ul>
+<li><p>校验通过后，解析出Token中的UserID 或 用户信息对象。</p>
+</li>
+<li><p>将用户信息存入 ThreadLocal 中，以便后续业务逻辑随时获取。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>为什么要用ThreadLocal？不能用其他存储吗？（考察对并发模型和作用域的理解）</li>
+</ol>
+<ul>
+<li><p>线程隔离（核心原因）：</p>
+<ul>
+<li><p>在Tomcat这种Web容器中，每一个HTTP请求都是由一个独立的线程处理的。</p>
+</li>
+<li><p>ThreadLocal 提供了线程局部变量，不同线程之间的数据是隔离的。把用户信息存在这里，既保证了当前请求能访问到，又不会干扰到其他并发请求。</p>
+</li>
+</ul>
+</li>
+<li><p>解耦与便捷性：</p>
+<ul>
+<li><p>如果不作为 ThreadLocal 存储，我需要在 Controller 层收到参数后，手动层层传递给 Service、Dao层（例如 method(User user , …))。这会导致代码冗余（参数爆炸）。</p>
+</li>
+<li><p>使用 ThreadLocal，我可以在代码的任何地方（Service、Dao、Util）通过静态方法（如UserContext.getUser()）直接获取当前登录用户，非常优雅。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>对比其他方案（为什么不用）：</p>
+<ul>
+<li><p>HttpSession：这是有状态的。在分布式&#x2F;微服务环境下，Session存储在单机内存，多台服务器之间无法直接共享，需要做Seesion复制或Sticky Session，违背了无状态认证的初衷。</p>
+</li>
+<li><p>全局静态变量（static Map)：这是绝对禁止的。因为静态变量是所有线程共享的，高并发下，A用户的请求可能会覆盖B用户的数据，导致极严重的安全事故（数据串号）。</p>
+</li>
+<li><p>Request Attributes（request.setAttribute)：这是一个可行的替代方案。但它的缺点是获取数据时需要持有 HttpServletRequest 对象，在Service层往往不希望引入Web层的API，而ThreadLocal是纯Java层的，侵入性更低。</p>
+</li>
+<li><p>补充信息（加分项）：“但是，使用ThreadLocal必须注意内存泄漏问题。Tomcat使用线程池复用线程，如果我不清理，上一次请求的用户信息可以会遗留到下一次请求。所以我务必在拦截器的afterCompletion方法中调用ThreadLocal.remove() 进行清理。”</p>
+</li>
+</ul>
+<ol start="3">
+<li>安全问题：Token被盗用了怎么办？</li>
+</ol>
+<ul>
+<li><p>直面风险：JWT是无状态的，一旦Token被盗（如通过XSS攻击或中间人攻击），黑客就拥有了该用户的全部权限，服务器无法区分是本人还是黑客。</p>
+</li>
+<li><p>预防措施（防盗）：</p>
+<ul>
+<li><p>HTTPS ：全程使用HTTPS加密传输，防止中间人抓包截取Token。</p>
+</li>
+<li><p>HttpOnly Cookie：建议将Token存放在HttpOnly的Cookie中，防止JavaScript读取，从而防御XSS攻击。</p>
+</li>
+</ul>
+</li>
+<li><p>补救与止损（防用）：</p>
+<ul>
+<li><p>短过期时间 + 双Token机制：Access Token设置极短有效期（如30分钟），Refresh Token设置长有效期。即便Access Token被盗，很快就会过期失效。</p>
+</li>
+<li><p>IP &#x2F; 指纹绑定：在生成Token时，将用户的IP地址或浏览器指纹（User-Agent）哈希进Payload。</p>
+</li>
+<li><p>黑名单机制（结合Redis）：虽然JWT主打无状态，但在注销或检测到异常（如Token被盗）时，可以将该Token ID 放入Redis黑名单，拦截器校验时多查一次Redis。这是一种”半有状态“的折中方案。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>除了JWT来身份认证，还有什么方法可以实现身份认证?</li>
+</ol>
+<ul>
+<li><p>除了JWT（Token机制），最主流的替代方案一定是Session + Cookie，其次是 OAuth2.0&#x2F;SSO等。</p>
+</li>
+<li><p>核心替代方案：基于Session + Cookie的认证（最经典、最传统的方式）</p>
+<ul>
+<li><p>实现原理：</p>
+<ul>
+<li><p>服务端存储：用户登录成功后，服务器在内存（或Redis）中创建一个Session对象，存储用户信息，并生成一个唯一的Session ID。</p>
+</li>
+<li><p>客户端存储：服务器通过HTTP响应头 Set-Cookie: JESSIONID&#x3D;xyz… ，将Session ID写入浏览器的Cookie中。</p>
+</li>
+<li><p>后续验证：浏览器每次发送请求会自动带上Cookie。服务器拿到Session ID，去内存里查找对应的用户信息。如果找到了，就是已登录。</p>
+</li>
+</ul>
+</li>
+<li><p>为什么在你的项目中没有用它?（对比JWT）</p>
+<ul>
+<li><p>服务器压力：Session数据存储在服务端。如果用户量巨大（比如百万上线），内存开销会很大。而JWT把数据存在客户端，服务端只需要算力校验签名，空间换时间。</p>
+</li>
+<li><p>分布式&#x2F;扩展性问题（核心痛点）：</p>
+<ul>
+<li><p>在微服务或多台服务器集群瞎，如果是Session，用户在机器A登录，Session存在机器A的内存里。下一次请求被负载均衡转发到了机器B，机器B内存里没有这个Session，用户就会被迫重新登录。</p>
+</li>
+<li><p>虽然可以用 Spring Session + Redis 实现分布式Session，但这增加了对Redis的强依赖。而JWT天然支持分布式，不需要去中心存储查数据。</p>
+</li>
+</ul>
+</li>
+<li><p>非浏览器客户端：如果你的API要给原生App（IOS&#x2F;Android）或IoT设备调用，Cookie机制处理起来不如Token方便（Token可以放在Header里随处传）。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第三方&#x2F;联合登录：OAuth 2.0 &amp; OIDC</p>
+<ul>
+<li><p>场景：微信登录，Github登录，Google登录，或者公司内部有多套系统，想实现单点登录。</p>
+</li>
+<li><p>实现原理：</p>
+<ul>
+<li><p>授权：不直接校验用户名密码，而是跳到第三方平台（如微信）认证。</p>
+</li>
+<li><p>令牌交换：第三方认证成功后，返回一个 Authorization Code，你的后端拿着这个Code去换取Access Token。</p>
+</li>
+<li><p>本质：其实OAuth 2.0 最终拿到的通常也是一个Token（往往也是JWT格式），但它的认证流程是代理给第三方的，而不是你自己查数据库校验密码。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>API Key &#x2F; Secret Key：</p>
+<ul>
+<li><p>场景：通常用于服务与服务之间（M2M）或者开放平台调用，而不是用户登录。</p>
+</li>
+<li><p>原理：调用方在Header里写死一个固定的Key。</p>
+</li>
+<li><p>缺点：无法区分具体用户，权限控制粒度粗，Key一旦泄露需要重置。</p>
+</li>
+</ul>
+</li>
+<li><p>HTTP Basic Authentication：</p>
+<ul>
+<li><p>原理：将 用户名：密码 进行Base64编码，放在Header的Authorization：Basic … 中。</p>
+</li>
+<li><p>缺点：非常不安全（Base64约等于明文），必须配合HTTPS，且无法实现“注销”（浏览器会一直缓存密码），现在很少用于C端用户登录，常见于一些内部组件（如Tomcat Manager，Prometheus）的简单防护。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="5">
+<li>ThreadLocal内存泄露，能具体讲讲为什么会泄露吗？（考察JVM和引用类型）</li>
+</ol>
+<ul>
+<li>ThreadLocal内部维护了一个ThreadLocalMap，Key是ThreadLocal的弱引用，Value是我们需要存储的用户对象（强引用）。如果当前线程一直不结束（例如线程池复用），且没有手动remove()，Key会被GC回收（变为null），但Value因为被当前线程持有强引用，无法回收。这就会导致一条 null -&gt; Value 的内存泄露链路。虽然Tomcat线程会重启释放，但在高并发下积累多了会导致OOM（内存溢出）。</li>
+</ul>
+<ol start="6">
+<li>既然用了JWT做无状态，为什么后来很多人又把JWT存进Redis呢？这不就变成Session了吗？（考察架构权衡）</li>
+</ol>
+<ul>
+<li>是的，这确实牺牲了一定的”无状态“特性。纯粹的JWT无法实现”服务端主动注销“或”踢人下线“功能（因为Token发出去就收不回了）。引入Redis是为了解决注销和续签问题。这是一种折中：用Redis的快速读写能力来弥补JWT无法撤销的短板，同时相比传统的Session，Redis的性能更好且天然支持分布式共享，不需要依赖容器的Session复制。</li>
+</ul>
+<ol start="7">
+<li>如果我在多线程环境下（比如Service里开了一个子线程异步处理任务），还能从ThreadLoacl拿用户信息吗？（考察ThreadLocal的局限性）</li>
+</ol>
+<ul>
+<li>不能。ThreadLocal 是线程隔离的，自线程无法访问父线程的ThreadLocal数据。解决方案：可以使用InheritableThreadLocal，它允许子线程继承父线程的值。或者在开启子线程时，手动将当前用户信息传递进去。</li>
+</ul>
+<ol start="8">
+<li>你说JWT支持分布式更好，但如果我用了Redis存Session，不一样也能解决分布式问题吗？那Session和JWT到底谁更好？</li>
+</ol>
+<ul>
+<li><p>没有绝对的“更好”，只有“更合适”。</p>
+</li>
+<li><p>是的，使用 Spring Session + Redis 确实可以完美解决Session的分布式问题，这种方案在很多企业级项目中非常成熟。</p>
+</li>
+<li><p>我选择JWT主要是考虑到去中心化和架构轻量级。</p>
+<ul>
+<li><p>如果是Session + Redis，每一次请求都需要去Redis查一次数据，Redis挂了整个认证系统就瘫痪了。</p>
+</li>
+<li><p>而JWT在验签时不需要查库（除非做黑名单），对后端的IO压力更小，更符合微服务‘无状态’的设计理念。</p>
+</li>
+<li><p>但如果业务场景对 ‘即时踢人’，‘权限实时回收’ 要求极高（比如金融系统），我会倾向于选择Session+Redis，或者JWT + Redis。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li><p>Session 认证有一个著名的安全漏洞叫CSRF，JWT会有这个问题吗？</p>
+<ul>
+<li><p>CSRF（跨站请求伪造）主要是因为浏览器会自动在请求中携带Cookie。</p>
+<ul>
+<li><p>如果JWT存储在LocalStorage中，并通Header手动发送，是天然免疫CSRF的，因为浏览器不会自动携带它。</p>
+</li>
+<li><p>但如果为了防XSS把JWT存进了Cookie（并设为HttpOnly），那么JWT也同样会面临CSRF攻击，这时候就需要配合CSRF Token等机制来防御。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Java中的HashMap底层结构是什么？</p>
+</li>
+</ol>
+<ul>
+<li><p>JDK 1.7 (经典实现）：</p>
+<ul>
+<li><p>数组 + 链表</p>
+</li>
+<li><p>底层维护一个 Entry 数组，当发生哈希冲突（Hash Collision）时，采用拉链法，将冲突的元素以链表形式挂在数组位置上。</p>
+</li>
+<li><p>插入方法是头插法（新来的插在链表头），但这在并发扩容时会导致死循环（著名的Infinite Loop问题）。<a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7236009910147825719?searchId=202307221616567C1AAB8045817A64ED43" >为什么 HashMap 会死循环？HashMap 死循环发生在 JDK 1.8 之前的版本中，它是指在并发环境下，因为多 - 掘金<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 两个线程对节点的引用是相同；两个线程扩容传递的是两个新的table，原来是ABC，t1扩容完成变成了CBA，此时t2接着迁移对象遍历原来ABC，遍历到C的时候发现C的next节点是B，这样一直循环，这才叫死循环</p>
+</li>
+<li><p>死循环问题：JDK 1.7 的HashMap在多线程并发扩容时，可能因为链表头插法导致链表形成环，从而在后续get() 操作中出现死循环，CPU 100%。</p>
+<ul>
+<li><p>触发条件：JDK 1.7 , HashMap 非线程安全，多线程put，触发resize（扩容）</p>
+</li>
+<li><p>HashMap扩容流程：①创建新数组newTable（长度*2）②遍历旧数组 ③ 把旧链表的节点重新计算索引 ④ 插入到新数组中</p>
+</li>
+<li><p>JDK 1.7 的HashMap在并发扩容时，由于使用头插法迁移链表节点，多个线程可能同时修改next指针，导致链表形成环，从而在后续遍历中产生死循环。</p>
+</li>
+</ul>
+</li>
+<li><p>为什么JDK 1.8 没这个问题了？</p>
+</li>
+<li><p>JDK 1.8 做了两个关键改动：① 扩容时使用尾插法，不会反转链表。 ② 当链表长度超过8时转为红黑树。因此不会再因为并发reise 形成环形链表。</p>
+</li>
+<li><p>那多线程下应该用什么？</p>
+</li>
+<li><p>读多写少：concurrentHashMap ， 强一致：加锁，单线程：HashMap</p>
+</li>
+</ul>
+</li>
+<li><p>JDK 1.8 (优化实现）：</p>
+<ul>
+<li><p>数组 + 链表 + 红黑树</p>
+</li>
+<li><p>底层维护一个Node数组</p>
+</li>
+<li><p>当链表长度过长（默认超过8）且数组长度大于64时，链表会转化为红黑树。</p>
+</li>
+<li><p>当树的节点数少于6时，又会退化回链表。</p>
+</li>
+<li><p>插入方式改为尾插法，解决了并发死循环问题。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li>红黑树插入&#x2F;删除复杂，为什么要引入它？解决了什么问题？</li>
+</ol>
+<ul>
+<li><p>解决的核心问题：哈希碰撞导致的性能退化（Hash DoS攻击）</p>
+<ul>
+<li><p>场景假设：如果你的Hash算法被攻击，或者运气极差，所有的Key都Hash到了同一个数组下标（Bucket）里。</p>
+</li>
+<li><p>不引入红黑树（纯链表）：</p>
+<ul>
+<li><p>此时HashMap退化成了一个单链表。</p>
+</li>
+<li><p>查找、插入、删除的时间复杂度全部变成O(N)。</p>
+</li>
+<li><p>如果有10万个数据都在一条链上，查询一次就是遍历10万次，CPU直接打满，系统卡死。这杯称为 Hash DoS 攻击。</p>
+</li>
+</ul>
+</li>
+<li><p>引入红黑树：</p>
+<ul>
+<li><p>红黑树是一种自平衡二叉查找树。</p>
+</li>
+<li><p>即使所有Key都冲突在同一个桶，查找、插入、删除的时间复杂度被控制在O(logN)。</p>
+</li>
+<li><p>对比：当N很大时（比如1000），链表需要查1000次，红黑树只需要查10次（2的10次方&#x3D;1024）。这是一个巨大的性能提升。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="12">
+<li>为什么说“效率低”是误解？</li>
+</ol>
+<ul>
+<li><p>在节点少的时候，红黑树的操作（左旋、右旋、变色）确实比链表的指针操作更耗时。</p>
+</li>
+<li><p>所以JDK做了阈值限制：</p>
+<ul>
+<li><p>链表长度 &lt; 8 ：此时 O(N) 和 O(logN) 差异极小，链表插入简单且占用内存小，所以用链表。</p>
+</li>
+<li><p>链表长度 &gt; 8 ：此时链表查找太慢了，红黑树虽然维护成本高一点，但查找速度的收益远大于维护成本的损耗，所以转红黑树。</p>
+</li>
+</ul>
+</li>
+<li><p>引入红黑树是为了兜底。它保证了在最坏情况（高碰撞）下，HashMap的性能不会雪崩。</p>
+</li>
+</ul>
+<ol start="13">
+<li>为什么HashMap有负载因子，而ArrayList没有？</li>
+</ol>
+<ul>
+<li><p>ArrayList的本质：物理连续</p>
+<ul>
+<li><p>寻址方式：ArrayList基于数组，支持随机访问。无论数组里有1个元素还是100万个元素，list.get(5)的时间复杂度永远是O(1)。它是通过内存地址偏移量直接计算的。</p>
+</li>
+<li><p>为什么不需要负载因子？：因为ArrayList填满了也不会变慢，它只有在“装不下”的时候才需要扩容。它没有“冲突”的概念。</p>
+</li>
+</ul>
+</li>
+<li><p>HashMap的本质：概率分布</p>
+<ul>
+<li><p>寻址方式：HashMap 依赖 Hash(Key)算出下标。</p>
+</li>
+<li><p>哈希冲突（Hash Collision）:</p>
+<ul>
+<li><p>数组长度是有限的。当元素越来越多，根据鸽巢原理和生日悖论，发生两个Key落在同一个位置的概率会急剧上升。</p>
+</li>
+<li><p>一旦冲突，就会形成链表或红黑树。</p>
+</li>
+<li><p>如果HashMap填满了(100%)再扩容，此时哈希冲突会非常严重，大量的桶里都有长链表，导致查询效率从O(1)退化。</p>
+</li>
+</ul>
+</li>
+<li><p>负载因子（Load Factor &#x3D; 0.75）的作用：</p>
+<ul>
+<li><p>它是一个时间与空间的权衡。</p>
+</li>
+<li><p>如果因子是1.0（填满才扩容）：空间利用率高，但冲突概率极大，查询慢。</p>
+</li>
+<li><p>如果因子是0.5（填一半就扩容）：冲突极少，查询快，但浪费一半内存，且频繁扩容（Rehash）消耗性能。</p>
+</li>
+<li><p>0.75是科学计算（泊松分布）得出的一个黄金平衡点：既保证了空间利用率，又把冲突控制在一个可接受的范围内。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="14">
+<li>为什么链表转红黑树的阈值是8？为什么不是6或者10？</li>
+</ol>
+<ul>
+<li>这是基于概率统计（泊松分布）。在理想的随机哈希算法下，一个桶里出现8个节点的概率已经小于千万分之一（0.00000006）。如果出现了8个，说明要么是哈希算法有问题，要么是被攻击了，此时转红黑树是作为一种防御手段。</li>
+</ul>
+<ol start="15">
+<li>既然红黑树那么好，为什么不一开始直接用红黑树，完全抛弃链表？</li>
+</ol>
+<ul>
+<li><p>空间成本：红黑树节点的大小大约是链表节点（Node）的2倍。在数据量小的时候，用红黑树太浪费内存。</p>
+</li>
+<li><p>时间成本：数据少时，链表的线性查找比红黑树的旋转平衡操作更快。</p>
+</li>
+</ul>
+<ol start="16">
+<li>JDK1.8之前，多线程操作HashMap会导致CPU100%，是什么原因？</li>
+</ol>
+<ul>
+<li>是因为并发扩容。在JDK1.7 中，扩容时 transfer 方法使用头插法迁移链表。如果两个线程同时扩容，可能会导致链表中的节点指针形成环形引用。当后续进行get操作且落在这个环上时，就会死循环。JDK1.8 改为尾插法后解决了这个问题，但HashMap依然不是线程安全的（会有数据覆盖问题），多线程请用 ConcurrentHashMap。</li>
+</ul>
+<ol start="17">
+<li>xxl-job要是没有执行怎么知道呢？</li>
+</ol>
+<ul>
+<li><p>面试官您说得很对，如果任务根本没有被调度（例如调度中心挂了、网络断了、或者Executor下线了），那么我的业务代码确实一行都不会执行，也不会有业务日志。针对这种 ‘静默失败’，单纯依赖业务层是无解的，必须从平台层和监控层**来解决。我有三道防线来感知这种情况：</p>
+</li>
+<li><p>①第一道防线：XXL-JOB自带的邮件&#x2F;钉钉告警（最基础）</p>
+</li>
+<li><p>虽然任务没执行，但在XXL-JOB的Admin控制台里，这次调度会记录为”失败“或者 ”无法连接执行器“。</p>
+<ul>
+<li><p>配置：我在创建任务时，会配置报警邮件（或者通过Webhook对接企微&#x2F;钉钉机器人）。</p>
+</li>
+<li><p>效果：一旦调度中心（Admin）尝试调度任务但失败了（比如找不到执行器），它会立刻发送报警信息给我。</p>
+</li>
+</ul>
+</li>
+<li><p>②第二道防线：基础设施监控（Prometheus + Grafana）（进阶）</p>
+</li>
+<li><p>如果连XXL-JOB的Admin服务都挂了，那报警邮件也发不出来。这时候就需要外部监控：</p>
+<ul>
+<li><p>心跳检测：我们会有运维监控系统（如Zabbix 或 Prometheus）去定时Ping XXL-JOB Admin的健康检查接口（Health Check）。</p>
+</li>
+<li><p>进程监控：监控Docker容器或Java进程状态。一旦Admin挂了，运维侧会立刻收到电话&#x2F;短信报警。</p>
+</li>
+</ul>
+</li>
+<li><p>③第三道防线：死信 &#x2F; SLA 监控（大厂做法，可选）</p>
+</li>
+<li><p>对于核心金融级任务（比如每日结算），我们不能只依赖工具。我会建立一个”看门狗“机制：</p>
+<ul>
+<li><p>逻辑：假设任务定在02:00执行。我会写一个独立的监控脚本（或利用监控系统的SLA功能），在02:30检查”任务表“或者”埋点数据“。</p>
+</li>
+<li><p>断言：如果02:30了还没有检测到02:00应该产生的数据或特定的”任务完成“打点，直接触发最高级别报警。这叫基于结果的监控，不依赖调度过程。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="18">
+<li>如何保证定时任务真的执行了？</li>
+</ol>
+<ul>
+<li><p>面试官问”怎么保证“，其实是在问”如果出故障了，你的架构怎么兜底“。</p>
+</li>
+<li><p>”要保证任务一定执行，仅仅靠监控是不够的，核心在于架构的高可用（HA）和容错策略。我在项目中主要通过以下几点来保证：“</p>
+</li>
+<li><p>① 调度中心集群化</p>
+</li>
+<li><p>避免单点故障：XXL-JOB的Admin支持集群部署。如果一台Admin挂了，其他的Admin节点会自动接管调度任务。这是保证“触发“动作可靠性的基石。</p>
+</li>
+<li><p>② 执行器（Executor）集群 + 路由策略</p>
+</li>
+<li><p>我的服务也是多实例部署的。</p>
+</li>
+<li><p>故障转移（Failover）：我在XXL-JOB中配置路由策略为”故障转移“。如果调度中心发现第一台机器连不上，它会自动尝试通过第二台、第三台机器执行任务，确保任务不会因为某台机器宕机而漏跑。</p>
+</li>
+<li><p>③ 失败重试机制</p>
+</li>
+<li><p>在任务配置中，我会设置 失败重试次数 &#x3D; 3。</p>
+</li>
+<li><p>如果是网络抖动或临时数据库锁导致的失败，重试机制往往能自动修复问题，保证最终执行成功。</p>
+</li>
+<li><p>④ 幂等性 —— 既然有重试，就必须有幂等</p>
+</li>
+<li><p>关键点：为了保证”一定执行“，我们引入了重试和故障转移，但这可能导致任务被重复执行（比如A机器执行了一半超时了，调度器以为失败了，又发给B机器执行）。</p>
+</li>
+<li><p>解决方案：我的业务逻辑实现了幂等性（例如使用数据库唯一索引、Redis分布式锁）。即便任务被触发了两次，数据也不会乱。这是“保证执行”的最后一道安全锁。</p>
+</li>
+</ul>
+<ol start="19">
+<li>你刚才提到了’故障转移‘，那如果任务在机器A上执行了一半，机器A突然断电了，XXL-JOB转移到机器B重新执行，怎么处理A产生的脏数据？</li>
+</ol>
+<ul>
+<li><p>考察分布式任务或清理机制。这是一个非常典型的问题。</p>
+</li>
+<li><p>① 事务回滚：如果我的任务是在一个数据库事务里的，A断电，事务没提交，数据库自动回滚，B重新执行完全没问题。</p>
+</li>
+<li><p>② 手动清理：如果不是事务操作（比如发了邮件），我们通常要求任务逻辑必须支持可重入。或者在任务开始前，先检查并清理掉当天‘处理中’的脏状态数据。</p>
+</li>
+</ul>
+<ol start="20">
+<li>如果有一个任务需要处理100万条数据，一台机器跑不动，经常超时，你怎么利用XXL-JOB解决？</li>
+</ol>
+<ul>
+<li><p>考察分片广播（Sharding）</p>
+</li>
+<li><p>我会使用XXL-JOB的分片广播路由策略。假设我有5台执行器机器，调度中心会同时触发这5台机器，并下发 index(0,1,2,3,4)和total(5)参数。在我的代码里，我用 id % 5 &#x3D;&#x3D; index 的逻辑来分配数据。这样100万条数据就被拆分成了每台机器处理20万条，并行处理，速度提升5倍，也不容易超时。</p>
+</li>
+</ul>
+<ol start="21">
+<li>如果你的定时任务执行时间超过了下一次调度时间怎么办？（比如每分钟执行一次，结果这次跑了2分钟）</li>
+</ol>
+<ul>
+<li><p>考虑调度阻塞策略。</p>
+</li>
+<li><p>XXL-JOB提供了阻塞处理策略。</p>
+</li>
+<li><p>① 单机串行：默认策略。上一轮没跑完，下一轮就在队列里等着。这会导致任务积压延迟。</p>
+</li>
+<li><p>② 丢弃后续调度：如果上一轮没完，下一轮直接不跑了。这是和非敏感任务。</p>
+</li>
+<li><p>③ 覆盖之前调度：杀掉上一个，跑新的（很少用）。</p>
+</li>
+<li><p>我的选择：通常我会分析为什么跑了这么久。如果是数据量激增，我会采用分片广播扩容；如果是代码效率低，我会优化SQL。在策略上，为了数据完整性，我通常选择‘单机串行’并配合报警，一旦积压立刻人工介入。</p>
+</li>
+</ul>
+<ol start="22">
+<li>面试时遇到定时任务”没触发怎么知道？“和”怎么保证执行“，直接抛出这个公式</li>
+</ol>
+<ul>
+<li><p>我采用的是 三层监控 + 集群容灾 的方案：</p>
+</li>
+<li><p>① 监控层面：</p>
+<ul>
+<li><p>Native：配置 XXL-JOB 失败报警邮件。</p>
+</li>
+<li><p>Infra：Prometheus 监控 Admin和Executor 的进程存活。</p>
+</li>
+<li><p>Business：对于核心任务，有独立的SLA扫描脚本，超时未产出结果直接报警。</p>
+</li>
+</ul>
+</li>
+<li><p>② 执行保障层面：</p>
+<ul>
+<li><p>部署Admin集群防止调度死机。</p>
+</li>
+<li><p>开启故障转移路由策略，防止单台执行器宕机。</p>
+</li>
+<li><p>配置失败重试应对网络抖动。</p>
+</li>
+<li><p>最重要的是，业务逻辑实现幂等性，消除重试带来的副作用。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="23">
+<li>发送者和消费者如何保证消息正确发送和接收？</li>
+</ol>
+<ul>
+<li><p>①发送端（Producer）：保证”发出去，且存储成功“</p>
+</li>
+<li><p>核心在于配置ACK机制（确认机制）。</p>
+<ul>
+<li><p>设置 acks &#x3D; all（或-1）：</p>
+<ul>
+<li><p>这是最严格的级别。意味着Producer发送消息后，必须等到Leader副本和所有ISR(In-Sync Replicas,同步副本）列表中的Follower都写入成功，Broker才会告诉Producer”发送成功“。</p>
+</li>
+<li><p>对比：acks&#x3D;0 （发后即忘，最快但会丢消息），acks &#x3D; 1 (只等Leader写完，如果Leader刚写完就挂了且未同步，会丢消息）。</p>
+</li>
+</ul>
+</li>
+<li><p>开启重试（Retries）：</p>
+<ul>
+<li>设置 retries &gt; 0。如果网络抖动导致发送失败，Producer 能够自动重发，防止因为网络波动导致的偶发丢失。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>② 服务端（Broker）：保证”存得住，坏了也不丢“</p>
+</li>
+<li><p>仅仅发送成功不够，Broker必须要能持久化并容灾。</p>
+<ul>
+<li><p>多副本机制：</p>
+<ul>
+<li>Topic 的 replication.factor 必须大于1（通常设为3），保证数据有备份。</li>
+</ul>
+</li>
+<li><p>ISR最小同步数(min.insync.replicas)：</p>
+<ul>
+<li><p>必须设置为大于1的数（例如副本为3，这个值设为2）。</p>
+</li>
+<li><p>重要逻辑：这配合 acks&#x3D;all 使用。如果ISR中存活的节点少于2个，Broker会直接拒绝写入请求，宁可报错也不接受“可能丢失”的数据。</p>
+</li>
+</ul>
+</li>
+<li><p>刷盘策略（即时落盘 vs 操作系统缓存）：</p>
+<ul>
+<li>注：这是一个加分项，但不必强求。Kafka默认依赖OS的PageCache刷盘，如果掉电可能会丢失少量数据。极端要求下可以调整刷盘参数，但通常通过多副本来规避单机掉电风险。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>③ 消费端：保证“处理完，才确认”</p>
+</li>
+<li><p>核心在于 关闭自动提交Offset（偏移量）。</p>
+<ul>
+<li><p>关闭 enable.auto.commit &#x3D; false：</p>
+<ul>
+<li>默认情况下，Kafka会每隔几秒自动提交Offset。如果在自动提交后，业务代码还没跑完机器就挂了，这条消息就“丢失”了（Broker以为你处理了，其实你没处理完）。</li>
+</ul>
+</li>
+<li><p>手动提交（Manual Commit)：</p>
+<ul>
+<li><p>在代码中，必须遵循“先执行业务逻辑，再提交Offset”的顺序。</p>
+</li>
+<li><p>try { process(message); commitSync(); } catch{…}</p>
+</li>
+<li><p>这样可以保证：只要业务没执行成功，Offset就不会更新，下次重启还能重新拉取到这条消息。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="24">
+<li>你刚才说消费者要‘处理完再提交’，那如果处理完了，还没来得及提交Offset机器就挂了，下次重启不就重复消费了吗？</li>
+</ol>
+<ul>
+<li><p>分析：这是一个必然的逻辑漏洞。可靠性必然伴随着重复消费的风险。</p>
+</li>
+<li><p>回答：是的，面试官您说得很对。为了保证消息不丢失，我们确实无法避免极端情况下的重复消费。</p>
+</li>
+<li><p>解决方案：并不是靠Kafka解决，而是靠业务端的幂等性设计。比如在我的项目中，我会拿消息里的唯一ID去查Redis或数据库，如果已经处理过，就直接忽略，不进行二次操作。这样即便Kafka重发了，我的业务数据也不会乱。</p>
+</li>
+</ul>
+<ol start="25">
+<li>Kafka能不能做到‘不丢也不重’（Exactly-once)?</li>
+</ol>
+<ul>
+<li><p>分析：考察高级特性。</p>
+</li>
+<li><p>回答：可以的。Kafka 0.11 版本之后引入了幂等性Producer和事务(Transaction)。</p>
+</li>
+<li><p>① 幂等性 Producer（enable.idempotence&#x3D;true）：Producer内部会自动分配PID和Sequence Number，如果因为网络抖动重发了同一条消息，Broker会自动去重。但这只能保证单会话、单曲分的幂等。</p>
+</li>
+<li><p>② 事务API：类似于数据库事务，可以跨分区写入。</p>
+</li>
+<li><p>但在我的这个项目中，考虑到性能开销和业务复杂度，我主要还是采用’At-least-once + 消费者幂等‘ 的通用方案。</p>
+</li>
+</ul>
+<ol start="26">
+<li>如果你的消费者处理得太慢，导致Kafka消息积压（Lag）严重，你怎么解决？</li>
+</ol>
+<ul>
+<li><p>分析：考察线上故障处理能力。</p>
+</li>
+<li><p>回答：遇到积压问题，我会分两步走：</p>
+</li>
+<li><p>① 临时紧急扩容（解决燃眉之急）：</p>
+<ul>
+<li><p>此时单纯增加消费者没用（因为消费者数量受限于Partition数量）。</p>
+</li>
+<li><p>我会写一个临时的转发程序，把积压的消息快速poll下来，不做业务处理，直接轮询发到另一个拥有更多Partition（比如扩大10倍）的临时Topic中。</p>
+</li>
+<li><p>然后部署更多的消费者去消费这个临时的Topic。</p>
+</li>
+</ul>
+</li>
+<li><p>② 根源排查（治本）：</p>
+<ul>
+<li><p>查日志看是否业务逻辑有死锁或慢SQL。</p>
+</li>
+<li><p>考虑增加每次poll的拉取批次大小，或者优化业务代码执行速度。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="27">
+<li>关于Kafka消息队列的无懈可击回答模板</li>
+</ol>
+<ul>
+<li><p>开场：Kafka保证可靠性主要分三端：Producer、Broker、Consumer。</p>
+</li>
+<li><p>Producer：必须开启 acks &#x3D; all 和 retries。</p>
+</li>
+<li><p>Broker：必须配置多副本（replication.factor)和min.insync.replicas &gt; 1，防止单点故障数据丢失。</p>
+</li>
+<li><p>Consumer：最关键的是关闭 auto.commit，改为手动提交，遵循’先业务，后提交‘的原则。</p>
+</li>
+<li><p>补刀（主动防御）：当然，这种配置是‘至少消费一次(At-least-once)策略，可能会导致重复消费，所以我会在业务端通过Redis&#x2F;数据库唯一键 实现幂等性来兜底。</p>
+</li>
+</ul>
+<ol start="28">
+<li>生物钟项目的难点？如何保证自己计算正确？</li>
+</ol>
+<ul>
+<li><p>面试官这个问题，考察的是当面对一个没有标准答案、或者逻辑复杂的业务时，你是如何进行“质量保证（QA）”和“测试验证”的？</p>
+</li>
+<li><p>第一部分：怎么回答“怎么知道算的是正确的？”</p>
+</li>
+<li><p>回答策略：我们无法验证”命运“是否准确，但我们可以验证算法逻辑是否符合预期。这叫 Test Oracle（测试预言）机制。</p>
+</li>
+<li><p>满分话术模板：面试官，这是一个非常好的问题。确实，玄学本身很难验证，但作为一个软件工程项目，我们把‘准确性’定义为：程序的输出是否严格符合我们设定的算法模型和权威数据源。为了保证这一点，我采取了‘三层验证法’：</p>
+</li>
+<li><p>① 权威数据对标（基准测试）：我们虽然查阅了古籍，但核心的‘节气’和‘历法’数据，我们是对标香港天文台或紫金山天文台的公开天文数据。这是硬指标，必须精确到分秒，这保证了底层时间轴的绝对正确。</p>
+</li>
+<li><p>② 交叉验证：在开发阶段，我写了一个爬虫脚本，选取了市面上排名前3的主流排盘网站作为‘竞品’。我随机生成了1000个不同年份（涵盖闰月、早子时等极端情况）的出生时间，跑我们的算法，并与这3家的结果进行比对。</p>
+<ul>
+<li><p>如果4家（包括我们）结果一致，视为通过。</p>
+</li>
+<li><p>如果不一致，我们会人工介入，翻阅古籍（也就是我们的需求文档）来判定谁是Bug，谁是Feature。</p>
+</li>
+</ul>
+</li>
+<li><p>③ 单元测试覆盖（Unit Testing）：针对那些有争议的‘边界条件’（比如立春交接的那一秒、闰四月），我编写了专门的JUnit单元测试用例。每次代码改动，都会跑一遍这些测试，确保不会出现回归Bug。</p>
+</li>
+</ul>
+<ol start="29">
+<li>生物钟项目难点升级</li>
+</ol>
+<ul>
+<li><p>方向一：复杂的日历转换与精度丢失问题（算法层）</p>
+</li>
+<li><p>话术：这个项目最大的难点在于高精度的时间切分。中国的农历（阴阳合历）并不是简单的数学规律，它涉及到太阳黄经的度数（24节气）。比如‘换运’或‘排八字’，是精确到‘立春’发生的那一秒的。如果用户出生在1998年2月4日 08:53 分，而立春是在 08:54 分，差一分钟，他的生肖和八字就完全变了。解决：我们不能简单用库里的Date类，而是引入了专门的天文算法库（或自行封装），计算太阳黄经偏移量，确保时间切割精确到毫秒级，解决了临界点计算错误的难题。</p>
+</li>
+<li><p>方向二：策略模式解决多套算法共存（架构层）</p>
+</li>
+<li><p>话术：难点在于业务逻辑的解耦与扩展。算命流派很多，比如对于‘早子时’（0点-1点）的处理，有的流派算前一天，有的算后一天。如果写大量的 if-else，代码会非常难以维护。解决：我使用了策略模式(Strategy Pattern)。定义了一个计算接口，然后实现了不同的流派算法类。在用户配置时，工厂类根据用户的选择动态注入具体的算法实现。这样既保证了代码的简洁，又方便后续接入新的流派算法。</p>
+</li>
+</ul>
+<ol start="30">
+<li>你刚才提到爬虫去抓取竞品的数据做对比，如果竞品有反爬怎么处理？</li>
+</ol>
+<ul>
+<li>回答：因为只是为了验证数据，频率不需要很高。我设置了随机的 User-Agent 和较长的请求间隔（比如每5秒一次），模拟正常用户行为。实在不行，对于核心的几百条边界测试数据，我们会人工手动去测，毕竟保证准确性是第一位的。</li>
+</ul>
+<ol start="31">
+<li>你说用策略模式，那如果我在运行过程中想动态切换算法（比如A&#x2F;B Test），需要重启服务吗？</li>
+</ol>
+<ul>
+<li>回答：不需要。因为策略对象是在代码运行时根据Context上下文（也就是用户的设置参数）动态new出来的（或者从Spring 容器获取）。用户改了设置，下一个请求进来时，就会自动选择新的策略实现类。</li>
+</ul>
+<ol start="32">
+<li>处理时间的是时候，时区问题考虑了吗？如果是国外出生的用户怎么办？</li>
+</ol>
+<ul>
+<li>回答：这确实是个坑。八字算法基于的是真太阳时（即当地相对于太阳的角度）。如果用户在纽约出生，我们不能直接用纽约时间，必须先将其转换为北京时间（或对应的平太阳时），再根据经纬度校正为真太阳时。我们在数据库里维护了一张‘经纬度-时差映射表’来解决这个问题。</li>
+</ul>
+<ol start="33">
+<li>实习的项目中用Redis来做缓存，那如何保证Redis和DB的数据一致性呢？</li>
+</ol>
+<ul>
+<li><p>总体流程：</p>
+</li>
+<li><p>① 定基调：为了性能，我们接受最终一致性，采用旁路缓存策略（先DB后删Cache）。</p>
+</li>
+<li><p>② 解释为什么：因为更新缓存容易导致并发脏数据，且浪费算力；先删缓存容易导致旧数据回填。</p>
+</li>
+<li><p>③ 补漏洞：为了防止删除失败，可以用MQ异步重试。</p>
+</li>
+<li><p>④ 秀肌肉：如果是核心超高并发业务，我会考虑延时双删 或者 Canal 监听 Binlog 方案。</p>
+</li>
+<li><p>基础方案：Cache Aside Pattern 旁路缓存模式</p>
+</li>
+<li><p>在我的项目中，我采用的是业界标准的 Cache Aside Pattern。具体操作顺序是：先更新数据库，然后直接删除缓存。</p>
+<ul>
+<li><p>为什么是删除而不是更新？</p>
+<ul>
+<li><p>性能角度：如果我频繁修改数据库（比如1分钟改10次），但这1分钟内只有1次读取。如果每次都去更新缓存，那前9次计算都是浪费的。删除缓存属于”懒加载“思想，只有用到时才去计算放入缓存，效率最高。</p>
+</li>
+<li><p>安全角度（并发脏数据）：如果是”更新缓存“，在并发写时，A线程先写了DB，B线程后写DB，但可能B先更新了缓存，A后更新了缓存，导致数据库是B的新值，缓存却是A的旧值，数据长期不一致。删除缓存可以避免这个问题。</p>
+</li>
+</ul>
+</li>
+<li><p>为什么是先DB后Cache？</p>
+<ul>
+<li>如果先删缓存，再更新DB。在更新DB的间隙，另一个线程读数据，发现缓存没了，去读DB（旧值）并写入缓存。等我更新完DB，缓存里依然是旧值。所以必须先DB后Cache。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>进阶方案：处理”删除失败“的情况（重试机制）</p>
+</li>
+<li><p>万一DB改了，删缓存的时候网络抖动失败了怎么办？</p>
+</li>
+<li><p>当然，这个方案有一个小概率风险：DB更新成功，但Redis删除失败。为了解决这个问题，我们引入了异步重试机制。</p>
+<ul>
+<li><p>把要删除的Key发送到消息队列。</p>
+</li>
+<li><p>有一个消费者专门重试删除操作，直到成功为止。</p>
+</li>
+<li><p>这样虽然有短暂的不一致，但保证了最终一致性。</p>
+</li>
+</ul>
+</li>
+<li><p>高并发极端方案：延迟双删</p>
+</li>
+<li><p>如果项目并发量极高，那么有可能会问”读写并发导致的脏数据“。</p>
+</li>
+<li><p>在极端的读写并发场景下（‘先DB后删缓存也可能翻车），比如：①缓存刚好失效 ②线程A读DB（旧值） ③线程B更新DB（新值） ④线程B删除缓存 ⑤线程A把旧值写入缓存。这时候缓存又是脏数据了。为了解决这个极端Bug，可以使用延迟双删策略：先删缓存 → 更新DB → 休眠N毫秒 → 再删除缓存 。休眠的时间是为了让线程A的读取操作结束，确保把A可能写入的脏数据再次删除掉。</p>
+</li>
+<li><p>终极杀招：基于Binlog的异步同步（Canal）</p>
+</li>
+<li><p>其实，为了解耦业务代码，更高级的做法是使用Canal监听MySQL的Binlog。</p>
+<ul>
+<li><p>业务代码只管更新数据库，不需要管Redis。</p>
+</li>
+<li><p>Canal伪装成MySQL Slave，监听到Binlog变动后，解析出数据，自动发送到MQ或直接调用程序去同步&#x2F;删除 Redis。</p>
+</li>
+<li><p>这种方式完全解耦，且可靠性由中间件保证。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="34">
+<li>你说要’先更新DB再删除缓存’，那在删除缓存之前，用户不就读到旧数据了吗？这怎么解决？</li>
+</ol>
+<ul>
+<li>是的，这确实会有一个毫秒级的时间窗口，用户会读到旧数据。但我们需要明确：使用了缓存，就意味着我们放弃了‘强一致性’，追求的是‘最终一致性’和高可用。如果业务要求绝对的实时一致性（比如银行转账余额），那就不应该读缓存，而是直接读数据库，甚至加锁。对于我的实习项目（比如商品详情、文章阅读），这几毫秒的延迟是完全可以接受的。</li>
+</ul>
+<ol start="35">
+<li>延迟双删中，那个‘休眠N毫秒’，N具体应该设多少？</li>
+</ol>
+<ul>
+<li>这个N需要根据业务的平均耗时来估算。N应该大于‘一次正常的数据库读写 + 写入缓存’’的时间。比如我的接口读取数据耗时50ms，那我可能会设为100ms或200ms。这就保证了第二次删除一定是在旧数据写入缓存之后发生的。</li>
+</ul>
+<ol start="36">
+<li>如果Redis挂了，你的系统会怎么样？（缓存雪崩&#x2F;击穿）</li>
+</ol>
+<ul>
+<li><p>考察系统容灾</p>
+</li>
+<li><p>如果Redis挂了，流量会瞬间打到数据库，可能导致数据库宕机。针对这个问题，我有几个预案：</p>
+</li>
+<li><p>① 缓存雪崩：给缓存设置过期时间加上一个随机值，防止同一时间大面积失效。</p>
+</li>
+<li><p>② 缓存击穿（热点Key失效）：使用互斥锁，只让一个线程去查库构建缓存，其他线程等待。</p>
+</li>
+<li><p>③ 服务降级 &#x2F; 熔断 ： 如果Redis彻底挂了，使用Sentinel进行熔断，直接返回默认值或空，保护数据库不被压垮。</p>
+</li>
+</ul>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>标题:</strong> </li>
+        <li><strong>作者:</strong> teacupxuan</li>
+        <li><strong>创建于
+                :</strong> 2026-02-04 15:47:51</li>
+        
+            <li>
+                <strong>更新于
+                    :</strong> 2026-02-04 15:46:48
+            </li>
+        
+        <li>
+            <strong>链接:</strong> https://teacupxuan.github.io/2026/02/04/Shopee面试复盘/
+        </li>
+        <li>
+            <strong>
+                版权声明:
+            </strong>
+            
+
+            
+                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2026/01/31/%E3%80%8A%E7%A9%B7%E7%88%B8%E7%88%B8%E5%AF%8C%E7%88%B8%E7%88%B8%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">《穷爸爸富爸爸》读书笔记</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        评论
+    </div>
+    
+
+        
+            
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'teacupxuan/teacupxuan.github.io',
+                'data-repo-id': 'R_kgDONInFtQ',
+                'data-category': 'General',
+                'data-category-id': 'DIC_kwDONInFtc4CtuXr',
+                'data-mapping': 'pathname',
+                'data-strict': '0',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'top',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
+            }
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
+            }
+            document.getElementById('giscus-container').appendChild(giscusScript);
+        }
+        if ('true') {
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
+            }, 1000);
+        } else {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        }
+    </script>
+
+
+        
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title"></div>
+		
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">teacupxuan</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 26 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
